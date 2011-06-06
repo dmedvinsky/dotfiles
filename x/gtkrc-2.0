@@ -1,0 +1,3 @@
+include "/home/dmedvinsky/.themes/absolute/gtk-2.0/gtkrc"
+gtk-theme-name="absolute"
+gtk-icon-theme-name="Tango"

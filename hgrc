@@ -1,0 +1,10 @@
+[ui]
+username = Dmitry Medvinsky <dmedvinsky@gmail.com>
+editor = vim
+
+[extensions]
+extdiff =
+
+[extdiff]
+cmd.vimdiff = vim
+opts.vimdiff = -f '+next' '+execute "DirDiff" argv(0) argv(1)'

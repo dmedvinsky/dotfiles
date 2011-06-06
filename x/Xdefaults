@@ -1,0 +1,32 @@
+Rxvt.geometry: 120x38
+Rxvt.jumpScroll: true
+Rxvt.skipScroll: true
+Rxvt.urgentOnBell: true
+Rxvt.visualBell: false
+Rxvt.scrollstyle: plain
+Rxvt.scrollBar: true
+Rxvt.scrollTtyOutput: false
+Rxvt.scrollWithBuffer: true
+Rxvt.scrollTtyKeypress: true
+Rxvt.saveLines: 4096
+Rxvt.internalBorder: 2
+Rxvt.externalBorder: 0
+Rxvt.borderLess: false
+Rxvt.termName: rxvt-256color
+Rxvt.modifier: alt
+Rxvt.mouseWhellScrollPage: false
+Rxvt.cursorBlink: false
+Rxvt.cursorUnderline: false
+Rxvt.pointerBlank: true
+
+Rxvt.perl-ext-common: default,matcher
+Rxvt.urlLauncher: firefox
+Rxvt.matcher.button: 3
+Rxvt.colorUL: #6090ff
+
+Rxvt.font:           xft:Terminus:pixelsize=14
+Rxvt.boldFont:       xft:Terminus:pixelsize=14
+Rxvt.italicFont:     xft:Terminus:pixelsize=14
+Rxvt.boldItalicFont: xft:Terminus:pixelsize=14
+
+# include ".Xdefaults.colors"

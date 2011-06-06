@@ -1,0 +1,62 @@
+# -*- coding: utf-8 -*-
+#
+# .XCompose
+#
+
+#include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+
+<Multi_key> <space>             : " "   nobreakspace # NO-BREAK SPACE
+
+<Multi_key> <semicolon>         : "“"   U2018 # LEFT SINGLE QUOTATION MARK
+<Multi_key> <apostrophe>        : "”"   U2019 # RIGHT SINGLE QUOTATION MARK
+<Multi_key> <colon>             : "‘"   U201c # LEFT DOUBLE QUOTATION MARK
+<Multi_key> <quotedbl>          : "’"   U201d # RIGHT DOUBLE QUOTATION MARK
+
+<Multi_key> <Cyrillic_be>       : "«"   guillemotleft  # LEFT DOUBLE ANGLE QUOTATION
+<Multi_key> <Cyrillic_yu>       : "»"   guillemotright # RIGHT DOUBLE ANGLE QUOTATION
+<Multi_key> <Cyrillic_BE>       : "„"   U201e # DOUBLE LOW-9 QUOTATION MARK
+<Multi_key> <Cyrillic_YU>       : "“"   U201c # LEFT DOUBLE QUOTATION MARK
+
+<Multi_key> <minus> <minus> <minus>     : "—"   emdash       # EM DASH
+<Multi_key> <period> <period> <period>  : "…"   ellipsis     # HORIZONTAL ELLIPSIS
+
+<Multi_key> <c>                 : "©"   copyright    # COPYRIGHT SIGN
+<Multi_key> <r>                 : "®"   registered   # REGISTERED SIGN
+<Multi_key> <t> <m>             : "™"   U2122        # TRADE MARK SIGN
+<Multi_key> <o>                 : "°"   degree       # DEGREE SIGN
+
+<Multi_key> <less> <minus>      : "←" U2190
+<Multi_key> <minus> <greater>   : "→" U2192
+<Multi_key> <less> <greater>    : "↔" U2194
+<Multi_key> <circumflex> <bar>  : "↑" U2191
+<Multi_key> <bar> <circumflex>  : "↑" U2191
+<Multi_key> <v> <bar>           : "↓" U2193
+<Multi_key> <bar> <v>           : "↓" U2193
+
+<Multi_key> <1> <slash> <2>: "½" onehalf # VULGAR FRACTION ONE HALF
+<Multi_key> <1> <slash> <4>: "¼" onequarter # VULGAR FRACTION ONE QUARTER
+<Multi_key> <3> <slash> <4>: "¾" threequarters # VULGAR FRACTION THREE QUARTERS
+<Multi_key> <1> <slash> <3>: "⅓" U2153 # VULGAR FRACTION ONE THIRD
+<Multi_key> <2> <slash> <3>: "⅔" U2154 # VULGAR FRACTION TWO THIRDS
+<Multi_key> <1> <slash> <5>: "⅕" U2155 # VULGAR FRACTION ONE FIFTH
+<Multi_key> <2> <slash> <5>: "⅖" U2156 # VULGAR FRACTION TWO FIFTHS
+<Multi_key> <3> <slash> <5>: "⅗" U2157 # VULGAR FRACTION THREE FIFTHS
+<Multi_key> <4> <slash> <5>: "⅘" U2158 # VULGAR FRACTION FOUR FIFTHS
+<Multi_key> <1> <slash> <6>: "⅙" U2159 # VULGAR FRACTION ONE SIXTH
+<Multi_key> <5> <slash> <6>: "⅚" U215A # VULGAR FRACTION FIVE SIXTHS
+<Multi_key> <1> <slash> <8>: "⅛" U215B # VULGAR FRACTION ONE EIGHTH
+<Multi_key> <3> <slash> <8>: "⅜" U215C # VULGAR FRACTION THREE EIGHTHS
+<Multi_key> <5> <slash> <8>: "⅝" U215D # VULGAR FRACTION FIVE EIGHTHS
+<Multi_key> <7> <slash> <8>: "⅞" U215E # VULGAR FRACTION SEVEN EIGHTHS
+
+<Multi_key> <minus>   <plus>    : "±" plusminus
+<Multi_key> <exclam>  <equal>   : "≠" U2260 # !=
+<Multi_key> <equal>   <equal>   : "≅" U2245 # ==
+<Multi_key> <greater> <equal>   : "≥" U2265 # >=
+<Multi_key> <less>    <equal>   : "≤"       # <=
+
+<Multi_key> <exclam> <minus>    : "¬" notsign # NOT SIGN
+<Multi_key> <i> <n> <f>         : "∞"
+<Multi_key> <m> <u>             : "µ"   mu # MICRO SIGN
+
+

@@ -1,0 +1,39 @@
+[user]
+    name = Dmitry Medvinsky
+    email = dmedvinsky@gmail.com
+[help]
+    autocorrect = -1
+[core]
+    editor = vim
+    pager = less -FRSX
+    whitespace = fix,trailing-space,space-before-tab,cr-at-eol
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    log = auto
+    grep = auto
+    interactive = auto
+    pager = true
+[color "diff"]
+    whitespace = blue reverse
+    meta = yellow
+[apply]
+    whitespace = fix
+[diff]
+    renames = copies
+    tool = meld
+[merge]
+    tool = meld
+    stat = true
+[difftool]
+    prompt = false
+[mergetool]
+    prompt = false
+[advice]
+    pushNonFastForward = false
+    statusHints = false
+[branch]
+    autosetupmerge = true
+[push]
+    default = tracking
