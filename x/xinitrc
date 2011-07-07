@@ -65,4 +65,5 @@ fi
 if [ -z "$wm" ] ; then
     wm=xmonad
 fi
-exec $wm
+#exec $wm
+ssh-agent $wm
