@@ -12,7 +12,6 @@ Rxvt.background: #333333
 Rxvt.foreground: #dcdccc
 
 !black
-*color0: #3F3F3F
 *color0: #1E2320
 *color8: #709080
 !red
