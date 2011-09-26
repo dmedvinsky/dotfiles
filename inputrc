@@ -1,3 +1,13 @@
 set editing-mode vi
 set keymap vi
-Space: magic-space
+
+set completion-ignore-case on
+set completion-map-case on
+set completion-prefix-display-length 2
+set expand-tilde off
+set horizontal-scroll-mode off
+set mark-directories on
+set match-hidden-files on
+set show-all-if-ambiguous on
+set show-all-if-unmodified off
+set skip-completed-text on
