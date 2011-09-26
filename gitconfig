@@ -22,10 +22,16 @@
     whitespace = fix
 [diff]
     renames = copies
-    tool = meld
+    tool = vimdiff-g
 [merge]
-    tool = meld
     stat = true
+    conflictstyle = diff3
+    tool = threesome
+[difftool "vimdiff-g"]
+    cmd = "vim -g --role diff -d -f $LOCAL $REMOTE"
+[mergetool "threesome"]
+    cmd = "vim -g --role merge -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'"
+    trustExitCode = true
 [difftool]
     prompt = false
 [mergetool]
