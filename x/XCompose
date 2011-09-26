@@ -50,6 +50,7 @@
 <Multi_key> <7> <slash> <8>: "⅞" U215E # VULGAR FRACTION SEVEN EIGHTHS
 
 <Multi_key> <minus>   <plus>    : "±" plusminus
+<Multi_key> <x>                 : "×" multiply
 <Multi_key> <exclam>  <equal>   : "≠" U2260 # !=
 <Multi_key> <equal>   <equal>   : "≅" U2245 # ==
 <Multi_key> <greater> <equal>   : "≥" U2265 # >=
