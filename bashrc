@@ -1,16 +1,23 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-# Vi-like shortcuts
-set -o vi
 
-# Correct typos in paths
-shopt -s cdspell
+# Variables {{{1
+export VISUAL=vim
+export EDITOR=vim
+
+export PATH="/usr/local/bin:$PATH"
+export PATH="~/bin:$PATH"
+# }}}1
 
 
-# Set prompt
-#PS1='[\u@\h \W]\$ '
-#PS1='[\[\033[01;32m\]\u@\h\[\033[00m\]]\[\033[01;34m\]\w\[\033[00m\]\$ '
+# Prompt {{{1
+if [ -n "$DISABLE_COLOR" ]; then
+    export PS1='[\u@\h \W]\$ '
+else
+    export PS1='[\[\033[01;32m\]\u@\h\[\033[00m\]]\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi
+
 prompt_command() {
     local RETURN_CODE="$?"
     local ASCII_RESET="\[\e[0m\]"
@@ -51,10 +58,19 @@ prompt_command() {
 
     PS1="$ASCII_BOLD[$USER_COLOR\u $HOST_COLOR\h $DATE_COLOR$DATE_STRING $TIME_COLOR$TIME_STRING $PROMPT_PREFIX$ASCII_RESET\w$ASCII_BOLD]$ASCII_RESET\n$PROMPT_COLOR\\\$$ASCII_RESET "
 }
-export PROMPT_COMMAND=prompt_command
+if [ -z "$DISABLE_GIT_STATUS" ]; then
+    export PROMPT_COMMAND=prompt_command
+fi
+# }}}1
 
 
-# Aliases
+# Aliases {{{1
+alias g='gvim --remote-silent'
+alias :e='vim'
+alias e=':e'
+alias :q='exit'
+alias :qa=':q'
+
 alias ls='ls --color=auto -F'
 alias ll='ls -lh'
 alias la='ll -a'
@@ -66,13 +82,8 @@ alias get='git'
 alias got='git'
 
 alias svn='echo "svn my ass:why bother?:stop this" | tr ":" "\n" | sort -R | head -1 && svn'
-
-alias g='gvim --remote-silent'
-alias e='vim'
-alias :q='exit'
-alias :qa=':q'
-
-alias wtf='echo Shit happens'
+alias upgrade_warnings='sudo cat /var/log/pacman.log | grep `date "+%Y-%m-%d"` | grep warning'
+# }}}1
 
 
 # Local settings
