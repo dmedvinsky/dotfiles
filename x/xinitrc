@@ -54,7 +54,6 @@ if [ ! -f ~/.mpd/pid ]; then
 fi
 
 check_process stalonetray && stalonetray &
-check_process fbxkb && ( sleep 3s && fbxkb ) &
 check_process workrave && workrave &
 
 # Source local settings before running window manager.
