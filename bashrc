@@ -66,9 +66,9 @@ fi
 
 # Aliases {{{1
 alias g='gvim --remote-silent'
-alias :e='vim'
-alias e=':e'
-alias :q='exit'
+alias e='vim'
+alias :e='e'
+alias :q='logout'
 alias :qa=':q'
 
 alias ls='ls --color=auto -F'
