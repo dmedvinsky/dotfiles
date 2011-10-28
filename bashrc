@@ -6,8 +6,16 @@
 export VISUAL=vim
 export EDITOR=vim
 
-export PATH="/usr/local/bin:$PATH"
-export PATH="~/bin:$PATH"
+addpath() {
+    path="$PATH"
+    path=$(echo $path | /bin/sed -re "s!$1:!!")
+    [ -d "$1" ] && path="$1:$path"
+    export PATH=$path
+}
+
+addpath "/usr/local/bin"
+addpath "$HOME/.cabal/bin"
+addpath "$HOME/bin"
 # }}}1
 
 
