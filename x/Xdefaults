@@ -24,10 +24,10 @@ Rxvt.urlLauncher: firefox
 Rxvt.matcher.button: 3
 Rxvt.colorUL: #6090ff
 
-Rxvt.font:           xft:Terminus:pixelsize=14
-Rxvt.boldFont:       xft:Terminus:pixelsize=14
-Rxvt.italicFont:     xft:Terminus:pixelsize=14
-Rxvt.boldItalicFont: xft:Terminus:pixelsize=14
+Rxvt.font:           xft:Ubuntu Mono:pixelsize=14
+Rxvt.boldFont:       xft:Ubuntu Mono:pixelsize=14
+Rxvt.italicFont:     xft:Ubuntu Mono:pixelsize=14
+Rxvt.boldItalicFont: xft:Ubuntu Mono:pixelsize=14
 
 # include "/home/dmedvinsky/.Xdefaults.colors"
 
