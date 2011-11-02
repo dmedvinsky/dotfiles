@@ -1,3 +1,8 @@
 include "/home/dmedvinsky/.themes/absolute/gtk-2.0/gtkrc"
 gtk-theme-name="absolute"
 gtk-font-name="Ubuntu 10"
+
+style "vim-background" {
+    bg[NORMAL] = "#fdf6e3"
+}
+widget "vim-main-window.*.GtkForm" style "vim-background"
