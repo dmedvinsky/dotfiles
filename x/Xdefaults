@@ -32,8 +32,7 @@ Rxvt.boldItalicFont: xft:Ubuntu Mono:pixelsize=14
 # include "/home/dmedvinsky/.Xdefaults.colors"
 
 
-! xscreensaver ---------------------------------------------------------
-
+! xscreensaver {{{
 xscreensaver.Dialog.headingFont:        -*-clean-bold-r-*-*-12-*-*-*-*-*-*-*
 xscreensaver.Dialog.bodyFont:           -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
 xscreensaver.Dialog.labelFont:          -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
@@ -60,3 +59,4 @@ xscreensaver.passwd.thermometer.background:  #000000
 xscreensaver.passwd.thermometer.width:       8
 !datestamp format--see the strftime(3) manual page for details
 xscreensaver.dateFormat:    %H:%M %a %d %b %Y
+! }}}
