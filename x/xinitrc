@@ -15,6 +15,7 @@ xset m 2 60
 # Disable beep.
 xset b off
 
+xrdb -merge ~/.Xdefaults
 
 # Make GTK and QT apps use of Compose key.
 export GTK_IM_MODULE=xim
