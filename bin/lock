@@ -1,0 +1,2 @@
+#!/bin/sh
+DISPLAY=:0.0 xscreensaver-command -lock

@@ -1,0 +1,6 @@
+#!/bin/bash
+prompt=`echo -n | dmenu -p 'Search:' $@`
+if [ -n "`echo -n $prompt`" ]; then
+    query=`echo -n $prompt | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'`
+    exec uzbl-browser "https://duckduckgo.com/?q=$query" >/dev/null 2>&1
+fi

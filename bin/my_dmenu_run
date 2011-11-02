@@ -1,0 +1,2 @@
+#!/bin/sh
+exec dmenu_run -p 'Run:' $@
