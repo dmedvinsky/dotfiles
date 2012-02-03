@@ -103,8 +103,8 @@ fi
 
 
 # Aliases {{{1
-alias g='gvim --remote-silent'
 alias e='vim'
+alias eg='gvim --remote-silent'
 alias :e='e'
 alias :q='logout'
 alias :qa=':q'
@@ -116,11 +116,13 @@ alias l='ll'
 
 alias cal='cal -3m'
 
+alias g='git'
 alias get='git'
 alias got='git'
 
 alias svn='echo "svn my ass:why bother?:stop this" | tr ":" "\n" | sort -R | head -1 && svn'
-alias upgrade_warnings='sudo cat /var/log/pacman.log | grep `date "+%Y-%m-%d"` | grep warning'
+
+alias c='cabal-dev'
 # }}}1
 
 
