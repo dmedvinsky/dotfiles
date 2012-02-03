@@ -12,6 +12,7 @@ bal() {
 mkdir -p $B
 mkdir -p $H/.terminfo/r
 
+bal .profile profile
 bal .inputrc inputrc
 bal .bash_profile bash_profile
 bal .bashrc bashrc
