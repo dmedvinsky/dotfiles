@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
     for f in /etc/X11/xinit/xinitrc.d/*; do
         [ -x "$f" ] && . "$f"
@@ -7,7 +7,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # Custom keyboard hacks.
-[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
+[ -f "${HOME}/.Xmodmap" ] && xmodmap "${HOME}/.Xmodmap"
 
 # Configure mouse and keyboard sensivity.
 xset r rate 270 55
@@ -15,19 +15,20 @@ xset m 2 60
 # Disable beep.
 xset b off
 
-xrdb -merge ~/.Xdefaults
+# Load my X defaults.
+xrdb -merge "${HOME}/.Xdefaults"
+#xrdb -DSOLARIZED_LIGHT -merge "${HOME}/.Xdefaults"
 
 # Make GTK and QT apps use of Compose key.
 export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
-# Themes and stuff
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# Themes and stuff.
+export GTK2_RC_FILES="${HOME}/.gtkrc-2.0"
 export OOO_FORCE_DESKTOP=gnome
 
-# Set cursor for the root window.
-xsetroot -cursor_name left_ptr
-# Set wallpaper.
-[ -f ~/.fehbg ] && eval `cat ~/.fehbg` &
+# Set cursor and wallpaper for the root window.
+xsetroot -cursor_name left_ptr &
+[ -f "${HOME}/.fehbg" ] && eval $(cat ~/.fehbg) &
 
 
 check_process() {
@@ -40,18 +41,12 @@ check_process() {
 
 # Startup apps.
 check_process xscreensaver && xscreensaver -no-splash &
-check_process urxvtd && urxvtd -q -o -f
-check_process stalonetray && stalonetray &
-check_process workrave && workrave &
+check_process urxvtd       && urxvtd -q -o -f
 
 # Source local settings before running window manager.
-[ -f "${HOME}/.xinitrc.local" ] && . $HOME/.xinitrc.local
+[ -f "${HOME}/.xinitrc.local" ] && . "${HOME}/.xinitrc.local"
 
 # Start window manager.
-if [ -n "$1" ] ; then
-    wm=$1
-fi
-if [ -z "$wm" ] ; then
-    wm=xmonad
-fi
-exec ssh-agent $wm
+if [ -n "$1"  ] ; then wm="$1";   fi
+if [ -z "$wm" ] ; then wm=xmonad; fi
+exec "$wm"
