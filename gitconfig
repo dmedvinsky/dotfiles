@@ -17,7 +17,7 @@
     pager = true
 [color "diff"]
     whitespace = blue reverse
-    meta = yellow
+    meta = white
 [apply]
     whitespace = fix
 [diff]
@@ -31,7 +31,8 @@
     cmd = "vim -g --role diff -d -f $LOCAL $REMOTE"
 [mergetool "threesome"]
     cmd = "vim -g --role merge -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'"
-    trustExitCode = true
+    trustExitCode = false
+    keepBackup = false
 [difftool]
     prompt = false
 [mergetool]
