@@ -16,6 +16,7 @@ bal .profile profile
 bal .inputrc inputrc
 bal .bash_profile bash_profile
 bal .bashrc bashrc
+bal .zshrc zshrc
 bal .gitconfig gitconfig
 bal .hgrc hgrc
 bal .screenrc screenrc
