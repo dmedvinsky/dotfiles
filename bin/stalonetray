@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+exec /usr/bin/stalonetray --config ~/.config/stalonetray/stalonetrayrc

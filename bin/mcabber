@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+exec /usr/bin/mcabber -f $HOME/.config/mcabber/mcabberrc $@

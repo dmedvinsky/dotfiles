@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+exec /usr/bin/dmenu_run -p 'Run:' -nb '#333333' -nf 'gray' -sb 'gray' -sf 'black' $@

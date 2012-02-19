@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env sh
 cmd=$1
 name=$2
 noterm=$3
-[ -z "$name" ] && name="$cmd"
+test -n "$name" || name="$cmd"
 [ "$noterm" = "no-term" ] && noterm=true || noterm=
 
 tmux start-server 2>/dev/null
