@@ -76,6 +76,7 @@ export EDITOR=vim
 export VISUAL=vim
 export GREP_OPTIONS='--color=auto'
 export VIRTUAL_ENV_DISABLE_PROMPT=true
+export PENTADACTYL_RUNTIME="$HOME/.cache/pentadactyl"
 # }}}
 
 # Aliases {{{
