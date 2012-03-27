@@ -36,8 +36,8 @@ zstyle ':completion::complete:*' cache-path "${HOME}/.zsh_cache"
 autoload -U compinit
 compinit -i
 
-# autoload -U edit-command-line
-# zle -N edit-command-line
+autoload -U edit-command-line
+zle -N edit-command-line
 
 autoload colors
 colors
@@ -123,7 +123,7 @@ bindkey -v
 bindkey ' ' magic-space
 
 bindkey -M vicmd "^M" accept-line
-# bindkey -M vicmd "v"  edit-command-line
+bindkey -M vicmd "v"  edit-command-line
 bindkey -M vicmd "gg" beginning-of-history
 bindkey -M vicmd "G"  end-of-history
 bindkey -M vicmd "p"  history-search-backward
