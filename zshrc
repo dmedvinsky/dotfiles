@@ -24,19 +24,14 @@ setopt prompt_subst
 # WORDCHARS=''
 zmodload -i zsh/complist
 
-# # Case insensitive
-# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-# zstyle ':completion:*' list-colors ''
+# zstyle ':completion:function:completer:command:argument:tag'
+zstyle ':completion:*' list-colors ''
+# Case insensitive
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z-}={A-Za-z_}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# zstyle ':completion:*:*:*:*:*' menu select
-# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-# zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm -w -w"
-
-# zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
-# cdpath=(.)
-
-# zstyle ':completion::complete:*' use-cache 1
-# zstyle ':completion::complete:*' cache-path "${ZSH}/cache/"
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path "${HOME}/.zsh_cache"
 
 autoload -U compinit
 compinit -i
