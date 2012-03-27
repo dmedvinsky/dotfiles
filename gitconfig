@@ -31,12 +31,12 @@
     cmd = "vim -g --role diff -d -f $LOCAL $REMOTE"
 [mergetool "threesome"]
     cmd = "vim -g --role merge -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'"
-    trustExitCode = false
-    keepBackup = false
+    trustExitCode = true
 [difftool]
     prompt = false
 [mergetool]
     prompt = false
+    keepBackup = false
 [advice]
     pushNonFastForward = false
     statusHints = false
