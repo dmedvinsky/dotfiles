@@ -21,7 +21,6 @@ unsetopt share_history
 
 setopt prompt_subst
 
-# WORDCHARS=''
 zmodload -i zsh/complist
 
 # zstyle ':completion:function:completer:command:argument:tag'
