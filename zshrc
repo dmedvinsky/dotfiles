@@ -107,7 +107,6 @@ alias gcount='git shortlog -sn';
 function collapse_pwd {
     echo $(pwd | sed -e "s,^$HOME,~,")
 }
-
 function prompt_char {
     git branch >/dev/null 2>/dev/null && echo '±' && return
     hg  root   >/dev/null 2>/dev/null && echo '☿' && return
@@ -135,7 +134,7 @@ bindkey -M vicmd "^M" accept-line
 bindkey -M vicmd "v"  edit-command-line
 bindkey -M vicmd "gg" beginning-of-history
 bindkey -M vicmd "G"  end-of-history
-bindkey -M vicmd "p"  history-search-backward
+bindkey -M vicmd "N"  history-search-backward
 bindkey -M vicmd "n"  history-search-forward
 bindkey -M vicmd "?"  history-incremental-search-backward
 bindkey -M vicmd "/"  history-incremental-search-forward
