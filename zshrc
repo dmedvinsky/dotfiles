@@ -69,6 +69,8 @@ addpath "$HOME/bin"
 # Environment {{{
 set +o beep
 
+test -r $HOME/.config/LS_COLORS && eval $(dircolors $HOME/.config/LS_COLORS)
+
 export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
