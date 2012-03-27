@@ -75,6 +75,7 @@ export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
 export GREP_OPTIONS='--color=auto'
+export VIRTUAL_ENV_DISABLE_PROMPT=true
 # }}}
 
 # Aliases {{{
@@ -111,10 +112,16 @@ function prompt_char {
     hg  root   >/dev/null 2>/dev/null && echo '☿' && return
     echo '$'
 }
+function virtual_env {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        local name=$(basename $VIRTUAL_ENV)
+        echo "(${name}) "
+    fi
+}
 
 PROMPT='
 %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}${vcs_info_msg_0_}%{$reset_color%}
-$(prompt_char) '
+$(virtual_env)$(prompt_char) '
 # }}}
 
 
