@@ -103,6 +103,8 @@ alias gb='git branch';          compdef _git gb=git-branch
 alias ga.='git add .';
 alias gba='git branch -a';
 alias gcount='git shortlog -sn';
+
+test -r "${HOME}/.local/alias" && source "${HOME}/.local/alias"
 # }}}
 
 # Prompt {{{
@@ -158,3 +160,5 @@ bindkey -M vicmd "${terminfo[kdch1]}" delete-char
 # bindkey -M viins "${terminfo[knp]}" 
 # bindkey -M vicmd "${terminfo[knp]}" 
 # }}}
+
+test -r "${HOME}/.local/zshrc" && source "${HOME}/.local/zshrc"

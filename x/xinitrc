@@ -44,7 +44,7 @@ check_process urxvtd       && urxvtd -q -o -f
 check_process xautolock && xautolock &
 
 # Source local settings before running window manager.
-[ -f "${HOME}/.xinitrc.local" ] && . "${HOME}/.xinitrc.local"
+[ -f "${HOME}/.local/xinitrc" ] && . "${HOME}/.local/xinitrc"
 
 # Start window manager.
 if [ -n "$1"  ] ; then wm="$1";   fi

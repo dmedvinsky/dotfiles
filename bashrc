@@ -104,10 +104,6 @@ fi
 
 # Aliases {{{1
 alias e='vim'
-alias eg='gvim --remote-silent'
-alias :e='e'
-alias :q='logout'
-alias :qa=':q'
 
 alias ls='ls --color=auto -F'
 alias ll='ls -lh'
@@ -123,8 +119,10 @@ alias got='git'
 alias svn='echo "svn my ass:why bother?:stop this" | tr ":" "\n" | sort -R | head -1 && svn'
 
 alias c='cabal-dev'
+
+test -r "${HOME}/.local/alias" && source "${HOME}/.local/alias"
 # }}}1
 
 
 # Local settings
-[ -f "$HOME/.bashrc.local" ] && source ~/.bashrc.local
+[ -f "${HOME}/.local/bashrc" ] && source "${HOME}/.local/bashrc"
