@@ -107,12 +107,12 @@ alias gcount='git shortlog -sn';
 function collapse_pwd {
     echo $(pwd | sed -e "s,^$HOME,~,")
 }
-function prompt_char {
+function __prompt_char {
     git branch >/dev/null 2>/dev/null && echo '±' && return
     hg  root   >/dev/null 2>/dev/null && echo '☿' && return
     echo '$'
 }
-function virtual_env {
+function __virtual_env {
     if [ -n "$VIRTUAL_ENV" ]; then
         local name=$(basename $VIRTUAL_ENV)
         echo "(${name}) "
@@ -120,8 +120,8 @@ function virtual_env {
 }
 
 PROMPT='
-%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}${vcs_info_msg_0_}%{$reset_color%}
-$(virtual_env)$(prompt_char) '
+%{$fg[red]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}${vcs_info_msg_0_}%{$reset_color%}
+$(__virtual_env)$(__prompt_char) '
 # }}}
 
 
