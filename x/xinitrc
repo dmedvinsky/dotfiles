@@ -40,7 +40,7 @@ check_process() {
 }
 
 # Startup apps.
-check_process urxvtd       && urxvtd -q -o -f
+check_process urxvtd    && urxvtd -q -o -f
 check_process xautolock && xautolock &
 
 # Source local settings before running window manager.
