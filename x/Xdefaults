@@ -1,62 +1,74 @@
-Rxvt.geometry: 120x38
-Rxvt.jumpScroll: true
-Rxvt.skipScroll: true
-Rxvt.urgentOnBell: true
-Rxvt.visualBell: false
-Rxvt.scrollstyle: plain
-Rxvt.scrollBar: true
-Rxvt.scrollTtyOutput: false
-Rxvt.scrollWithBuffer: true
-Rxvt.scrollTtyKeypress: true
-Rxvt.saveLines: 4096
-Rxvt.internalBorder: 2
-Rxvt.externalBorder: 0
-Rxvt.borderLess: false
-Rxvt.termName: rxvt-256color
-Rxvt.modifier: alt
-Rxvt.mouseWhellScrollPage: false
-Rxvt.cursorBlink: false
-Rxvt.cursorUnderline: false
-Rxvt.pointerBlank: true
+! rxvt {{{
+Rxvt.geometry             : 120x38
+Rxvt.jumpScroll           : true
+Rxvt.skipScroll           : true
+Rxvt.urgentOnBell         : true
+Rxvt.visualBell           : false
+Rxvt.scrollstyle          : plain
+Rxvt.scrollBar            : true
+Rxvt.scrollTtyOutput      : false
+Rxvt.scrollWithBuffer     : true
+Rxvt.scrollTtyKeypress    : true
+Rxvt.saveLines            : 4096
+Rxvt.internalBorder       : 2
+Rxvt.externalBorder       : 0
+Rxvt.borderLess           : false
+Rxvt.termName             : rxvt-256color
+Rxvt.modifier             : alt
+Rxvt.meta8                : false
+Rxvt.mouseWhellScrollPage : false
+Rxvt.cursorBlink          : false
+Rxvt.cursorUnderline      : false
+Rxvt.pointerBlank         : true
 
-Rxvt.perl-ext-common: default,matcher
-Rxvt.urlLauncher: firefox
-Rxvt.matcher.button: 3
-Rxvt.colorUL: #6090ff
+Rxvt.perl-ext-common      : default,matcher,font-size
+Rxvt.urlLauncher          : firefox
+Rxvt.underlineURLs        : true
+Rxvt.matcher.button       : 3
+Rxvt.colorUL              : #6090ff
+Rxvt.keysym.M-u:      perl:url-select:select_next
+Rxvt.keysym.C-Up:     perl:font-size :increase
+Rxvt.keysym.C-Down:   perl:font-size :decrease
 
-Rxvt.font:           xft:Ubuntu Mono:pixelsize=14
-Rxvt.boldFont:       xft:Ubuntu Mono:pixelsize=14
-Rxvt.italicFont:     xft:Ubuntu Mono:pixelsize=14
-Rxvt.boldItalicFont: xft:Ubuntu Mono:pixelsize=14
+Rxvt.font:             xft:Ubuntu Mono:pixelsize=14
+Rxvt.boldFont:         xft:Ubuntu Mono:pixelsize=14
+Rxvt.italicFont:       xft:Ubuntu Mono:pixelsize=14
+Rxvt.boldItalicFont:   xft:Ubuntu Mono:pixelsize=14
+! }}}
 
-# include "/home/dmedvinsky/.Xdefaults.colors"
+
+#include "/home/dmedvinsky/.Xdefaults.colors"
 
 
 ! xscreensaver {{{
-xscreensaver.Dialog.headingFont:        -*-clean-bold-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.headingFont            : -*-clean-bold-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont               : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont              : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont              : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont             : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont               : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont             : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
 !general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground:         #ffffff
-xscreensaver.Dialog.background:         #111111
-xscreensaver.Dialog.topShadowColor:     #111111
-xscreensaver.Dialog.bottomShadowColor:  #111111
-xscreensaver.Dialog.Button.foreground:  #666666
-xscreensaver.Dialog.Button.background:  #ffffff
+xscreensaver.Dialog.foreground             : #ffffff
+xscreensaver.Dialog.background             : #111111
+xscreensaver.Dialog.topShadowColor         : #111111
+xscreensaver.Dialog.bottomShadowColor      : #111111
+xscreensaver.Dialog.Button.foreground      : #666666
+xscreensaver.Dialog.Button.background      : #ffffff
 !username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #666666
-xscreensaver.Dialog.text.background:    #ffffff
-xscreensaver.Dialog.internalBorderWidth:24
-xscreensaver.Dialog.borderWidth:        20
-xscreensaver.Dialog.shadowThickness:    2
+xscreensaver.Dialog.text.foreground        : #666666
+xscreensaver.Dialog.text.background        : #ffffff
+xscreensaver.Dialog.internalBorderWidth    : 24
+xscreensaver.Dialog.borderWidth            : 20
+xscreensaver.Dialog.shadowThickness        : 2
 !timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #ff0000
-xscreensaver.passwd.thermometer.background:  #000000
-xscreensaver.passwd.thermometer.width:       8
-!datestamp format--see the strftime(3) manual page for details
-xscreensaver.dateFormat:    %H:%M %a %d %b %Y
+xscreensaver.passwd.thermometer.foreground : #ff0000
+xscreensaver.passwd.thermometer.background : #000000
+xscreensaver.passwd.thermometer.width      : 8
+xscreensaver.dateFormat                    : %H:%M %a %d %b %Y
+! }}}
+
+
+! xautolock {{{
+Xautolock.locker : i3lock
 ! }}}
