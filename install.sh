@@ -21,7 +21,6 @@ bal .gitconfig gitconfig
 bal .hgrc hgrc
 bal .screenrc screenrc
 bal .tmux.conf tmux.conf
-bal .ncmpcpp/config ncmpcpp.conf
 bal .terminfo/r/rxvt-256color terminfo/rxvt-256color
 
 bal .xinitrc x/xinitrc
