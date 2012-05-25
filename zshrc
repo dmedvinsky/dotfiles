@@ -58,11 +58,13 @@ precmd () {
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 addpath() {
     path="$PATH"
-    path=$(echo $path | /bin/sed -re "s!$1:!!")
+    path=$(echo $path | /bin/sed -re "s!:?$1:?!!")
     [ -d "$1" ] && path="$1:$path"
     export PATH=$path
 }
 addpath "$HOME/.cabal/bin"
+addpath "$HOME/.android/sdk/tools"
+addpath "$HOME/.android/sdk/platform-tools"
 addpath "$HOME/bin"
 # }}}
 
