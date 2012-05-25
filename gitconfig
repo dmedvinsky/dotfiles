@@ -28,9 +28,9 @@
     conflictstyle = diff3
     tool = threesome
 [difftool "vimdiff-g"]
-    cmd = "vim -g --role diff -d -f $LOCAL $REMOTE"
+    cmd = "vim -d -f $LOCAL $REMOTE"
 [mergetool "threesome"]
-    cmd = "vim -g --role merge -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'"
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true
 [difftool]
     prompt = false
