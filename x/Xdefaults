@@ -21,7 +21,7 @@ Rxvt.cursorBlink          : false
 Rxvt.cursorUnderline      : false
 Rxvt.pointerBlank         : true
 
-Rxvt.perl-ext-common      : default,matcher,font-size
+Rxvt.perl-ext-common      : default,font-size,url-select,matcher
 Rxvt.urlLauncher          : firefox
 Rxvt.underlineURLs        : true
 Rxvt.matcher.button       : 3
