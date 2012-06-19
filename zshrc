@@ -52,6 +52,8 @@ precmd () {
     }
     vcs_info
 }
+
+fpath=("${HOME}/src/universe/zsh-completions" $fpath)
 # }}}
 
 # PATH {{{
@@ -62,6 +64,7 @@ addpath() {
     [ -d "$1" ] && path="$1:$path"
     export PATH=$path
 }
+addpath "$HOME/.gem/ruby/1.9.1/bin"
 addpath "$HOME/.cabal/bin"
 addpath "$HOME/.android/sdk/tools"
 addpath "$HOME/.android/sdk/platform-tools"
