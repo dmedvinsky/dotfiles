@@ -44,3 +44,28 @@
     autosetupmerge = true
 [push]
     default = tracking
+
+[alias]
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+
+    root = rev-parse --show-toplevel
+    currentbranch = !git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2
+
+    l   = log -18 --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
+    ll  = log     --color=always --all --topo-order --pretty='format:%Cgreen%h%Creset %s%Cred%d%Creset %C(black bold)(by %an)%Creset'
+    gl  = log -12 --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(by %an)%Creset%C(yellow bold)%d%Creset%n'
+    gll = log     --color=always --all --graph --topo-order --pretty='format:%Cgreen%h%Creset %s %C(black bold)(by %an)%Creset%C(yellow bold)%d%Creset%n'
+
+    pull = pull --ff-only
+
+    a = add
+    c = commit
+    ca = commit --all
+    cam = commit --amend
+    d = diff
+    dc = diff --cached
+    o = checkout
+    s = status
+    unstage = reset HEAD
