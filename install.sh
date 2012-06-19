@@ -11,12 +11,14 @@ bal() {
 
 mkdir -p $B
 mkdir -p $H/.terminfo/r
+mkdir -p $H/.config/fish
 
 bal .profile profile
 bal .inputrc inputrc
 bal .bash_profile bash_profile
 bal .bashrc bashrc
 bal .zshrc zshrc
+bal .config/fish/config.fish config.fish
 bal .gitconfig gitconfig
 bal .hgrc hgrc
 bal .screenrc screenrc
