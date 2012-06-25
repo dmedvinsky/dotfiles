@@ -31,5 +31,6 @@ bal .Xdefaults x/Xdefaults
 bal .Xdefaults.colors x/colors.zenburn
 bal .gtkrc-2.0 x/gtkrc-2.0
 bal .fonts.conf x/fonts.conf
+bal .pentadactylrc x/pentadactylrc
 
 cd - >/dev/null
