@@ -40,8 +40,7 @@ check_process() {
 }
 
 # Startup apps.
-check_process urxvtd    && urxvtd -q -o -f
-check_process xautolock && xautolock &
+check_process urxvtd && urxvtd -q -o -f
 
 # Source local settings before running window manager.
 [ -f "${HOME}/.local/xinitrc" ] && . "${HOME}/.local/xinitrc"
