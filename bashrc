@@ -3,19 +3,15 @@
 
 
 # Variables {{{1
+export PAGER=less
 export VISUAL=vim
 export EDITOR=vim
+export GREP_OPTIONS='--color=auto'
+export PENTADACTYL_RUNTIME="$HOME/.cache/pentadactyl"
 
-addpath() {
-    path="$PATH"
-    path=$(echo $path | /bin/sed -re "s!$1:!!")
-    [ -d "$1" ] && path="$1:$path"
-    export PATH=$path
-}
-
-addpath "/usr/local/bin"
-addpath "$HOME/.cabal/bin"
-addpath "$HOME/bin"
+PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
+PATH="/usr/X11/bin:$PATH"
+PATH="$HOME/bin:$PATH"
 # }}}1
 
 
