@@ -11,6 +11,13 @@ set PATH "$HOME/.android/sdk/platform-tools" $PATH
 set PATH "$HOME/.npm/bin/.bin" $PATH
 
 set -g -x fish_greeting ''
+set -g -x __fish_git_prompt_showdirtystate 1
+set -g -x __fish_git_prompt_showstashstate 1
+set -g -x __fish_git_prompt_showuntrackedfiles 1
+set -g -x __fish_git_prompt_showupstream auto,verbose
+set -g -x __fish_git_prompt_color magenta
+set -g -x __fish_git_prompt_color_dirtystate red
+
 set -g -x VISUAL vim
 set -g -x EDITOR vim
 set -g -x PAGES less
@@ -25,23 +32,6 @@ set -g -x VIRTUAL_ENV_DISABLE_PROMPT true
 # }}}
 
 # Prompt {{{
-function __git_prompt_status
-    # TODO
-    printf ''
-end
-
-function __git_prompt
-    if git root >/dev/null 2>&1
-        set_color normal
-        printf ' on '
-        set_color magenta
-        printf '%s' (git currentbranch ^/dev/null)
-        set_color green
-        __git_prompt_status
-        set_color normal
-    end
-end
-
 function __prompt_char
     if git root >/dev/null 2>&1
        printf '±'
@@ -91,7 +81,7 @@ function fish_prompt
     set_color normal
 
     # cool stuff
-    __git_prompt
+    __fish_git_prompt
     __virtual_env
 
     printf '\n'
