@@ -3,12 +3,10 @@
 # Environment variables {{{
 set PATH "/usr/local/bin" $PATH
 set PATH "/usr/local/sbin" $PATH
+# set PATH "$HOME/.cabal/bin" $PATH
+# set PATH "$HOME/.android/sdk/tools" $PATH
+# set PATH "$HOME/.android/sdk/platform-tools" $PATH
 set PATH "$HOME/bin" $PATH
-set PATH "$HOME/.cabal/bin" $PATH
-set PATH "$HOME/.gem/ruby/1.9.1/bin" $PATH
-set PATH "$HOME/.android/sdk/tools" $PATH
-set PATH "$HOME/.android/sdk/platform-tools" $PATH
-set PATH "$HOME/.npm/bin/.bin" $PATH
 
 set -g -x fish_greeting ''
 set -g -x __fish_git_prompt_showdirtystate 1
