@@ -1,6 +1,10 @@
 # vim: fdm=marker
 
 # Environment variables {{{
+set PATH "/bin/"
+set PATH "/sbin/" $PATH
+set PATH "/usr/bin/" $PATH
+set PATH "/usr/sbin/" $PATH
 set PATH "/usr/local/bin" $PATH
 set PATH "/usr/local/sbin" $PATH
 # set PATH "$HOME/.cabal/bin" $PATH
