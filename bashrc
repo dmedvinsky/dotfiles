@@ -1,7 +1,6 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-
 # Variables {{{1
 export PAGER=less
 export VISUAL=vim
@@ -13,7 +12,6 @@ PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 PATH="/usr/X11/bin:$PATH"
 PATH="$HOME/bin:$PATH"
 # }}}1
-
 
 # Prompt {{{1
 if [ -n "$DISABLE_COLOR" ]; then
@@ -97,28 +95,15 @@ if [ -z "$DISABLE_GIT_STATUS" ]; then
 fi
 # }}}1
 
-
 # Aliases {{{1
-alias e='vim'
-
-alias ls='ls --color=auto -F'
+alias ls='ls -F'
 alias ll='ls -lh'
 alias la='ll -a'
 alias l='ll'
 
-alias cal='cal -3m'
-
 alias g='git'
-alias get='git'
-alias got='git'
-
-alias svn='echo "svn my ass:why bother?:stop this" | tr ":" "\n" | sort -R | head -1 && svn'
-
-alias c='cabal-dev'
-
 test -r "${HOME}/.local/alias" && source "${HOME}/.local/alias"
 # }}}1
-
 
 # Local settings
 [ -f "${HOME}/.local/bashrc" ] && source "${HOME}/.local/bashrc"
