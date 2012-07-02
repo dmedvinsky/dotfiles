@@ -5,11 +5,13 @@ set PATH "/bin/"
 set PATH "/sbin/" $PATH
 set PATH "/usr/bin/" $PATH
 set PATH "/usr/sbin/" $PATH
-set PATH "/usr/local/bin" $PATH
-set PATH "/usr/local/sbin" $PATH
+test -d "/usr/local/bin"; and set PATH "/usr/local/bin" $PATH
+test -d "/usr/local/sbin"; and set PATH "/usr/local/sbin" $PATH
+if test -d "$HOME/.android/sdk"
+    set PATH "$HOME/.android/sdk/tools" $PATH
+    set PATH "$HOME/.android/sdk/platform-tools" $PATH
+end
 # set PATH "$HOME/.cabal/bin" $PATH
-# set PATH "$HOME/.android/sdk/tools" $PATH
-# set PATH "$HOME/.android/sdk/platform-tools" $PATH
 set PATH "$HOME/bin" $PATH
 
 set -g -x fish_greeting ''
