@@ -138,7 +138,7 @@ alias ga. 'git add .'
 alias gba 'git branch -a'
 alias gri 'git rebase --interactive'
 
-. $HOME/.local/alias.fish
+test -d "$HOME/.local/alias.fish"; and . "$HOME/.local/alias.fish"
 # }}}
 
 # Functions {{{
