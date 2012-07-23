@@ -1,10 +1,10 @@
 # vim: fdm=marker
 
 # Environment variables {{{
-set PATH "/bin/"
-set PATH "/sbin/" $PATH
-set PATH "/usr/bin/" $PATH
-set PATH "/usr/sbin/" $PATH
+set PATH "/bin"
+set PATH "/sbin" $PATH
+set PATH "/usr/bin" $PATH
+set PATH "/usr/sbin" $PATH
 test -d "/usr/local/bin"; and set PATH "/usr/local/bin" $PATH
 test -d "/usr/local/sbin"; and set PATH "/usr/local/sbin" $PATH
 if test -d "$HOME/.android/sdk"
