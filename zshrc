@@ -56,22 +56,16 @@ precmd () {
 fpath=("${HOME}/src/universe/zsh-completions" $fpath)
 # }}}
 
-# PATH {{{
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
-addpath() {
-    path="$PATH"
-    path=$(echo $path | /bin/sed -re "s!:?$1:?!!")
-    [ -d "$1" ] && path="$1:$path"
-    export PATH=$path
-}
-addpath "$HOME/.gem/ruby/1.9.1/bin"
-addpath "$HOME/.cabal/bin"
-addpath "$HOME/.android/sdk/tools"
-addpath "$HOME/.android/sdk/platform-tools"
-addpath "$HOME/bin"
-# }}}
-
 # Environment {{{
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+test -d "/usr/X11/bin" && PATH="/usr/X11/bin:${PATH}"
+test -d "${HOME}/.gem/ruby/1.9.1/bin" && PATH="${HOME}/.gem/ruby/1.9.1/bin:${PATH}"
+test -d "${HOME}/.android/sdk/tools" && PATH="${HOME}/.android/sdk/tools:${PATH}"
+test -d "${HOME}/.android/sdk/platform-tools" && PATH="${HOME}/.android/sdk/platform-tools:${PATH}"
+test -d "${HOME}/.cabal/bin" && PATH="${HOME}/.cabal/bin:${PATH}"
+test -d "${HOME}/bin" && PATH="${HOME}/bin:${PATH}"
+export $PATH
+
 set +o beep
 
 test -r $HOME/.config/LS_COLORS && eval $(dircolors $HOME/.config/LS_COLORS)
@@ -85,15 +79,31 @@ export PENTADACTYL_RUNTIME="$HOME/.cache/pentadactyl"
 # }}}
 
 # Aliases {{{
-alias ll='ls --color -lh'
-alias la='ll -a'
-alias  l='ll'
+if which tree >/dev/null 2>&1; then
+    alias l1='tree --dirsfirst -ChFL 1'
+    alias l2='tree --dirsfirst -ChFL 2'
+    alias l3='tree --dirsfirst -ChFL 3'
+    alias ll1='tree --dirsfirst -ChFupDaL 1'
+    alias ll2='tree --dirsfirst -ChFupDaL 2'
+    alias ll3='tree --dirsfirst -ChFupDaL 3'
+    alias l='l1'
+    alias ll='ll1'
+else
+    alias ls='ls -F'
+    alias ll='ls -lh'
+    alias la='ll -a'
+    alias l='ll'
+fi
 
-alias start='sudo rc.d start'
-alias stop='sudo rc.d stop'
-alias restart='sudo rc.d restart'
+if which rc.d >/dev/null 2>&1; then
+    alias start='sudo rc.d start'
+    alias stop='sudo rc.d stop'
+    alias restart='sudo rc.d restart'
+fi
 
 alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
 alias cd..='cd ..'
 
 alias gs='git status';          compdef _git gs=git-status
@@ -106,8 +116,6 @@ alias gb='git branch';          compdef _git gb=git-branch
 alias ga.='git add .';
 alias gba='git branch -a';
 alias gcount='git shortlog -sn';
-
-test -r "${HOME}/.local/alias" && source "${HOME}/.local/alias"
 # }}}
 
 # Prompt {{{

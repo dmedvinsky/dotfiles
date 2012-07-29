@@ -1,36 +1,44 @@
-#!/bin/sh
-cd `dirname $0` >/dev/null
+#!/usr/bin/env bash
+DIR=$(dirname $0)
+BACKUP_DIR="${DIR}/backup"
+DOTFILES_DIR=$(cd "${DIR}"; pwd)
 
-H=$HOME
-B=$HOME/.dotfiles.bak
+cd "${DIR}" || exit 1
+mkdir -p "${BACKUP_DIR}"
+mkdir -p "${HOME}/.config"
+if test -f "/usr/share/terminfo/r/rxvt-256color"; then :
+else
+    mkdir -p "${HOME}/.terminfo/r"
+fi
 
-bal() {
-    mv $H/$1 $B/ 2>/dev/null
-    ln -s $HOME/.dotfiles/$2 $H/$1 2>/dev/null
+install() {
+    local dst=$1
+    local src=$2
+    test -e "${HOME}/${dst}" && mv "${HOME}/${dst}" "${BACKUP_DIR}/"
+    test -r "${DIR}/${src}" && ln -s "${DOTFILES_DIR}/${src}" "${HOME}/${dst}"
 }
 
-mkdir -p $B
-mkdir -p $H/.terminfo/r
-mkdir -p $H/.config/fish
+install .profile profile
+install .inputrc inputrc
+install .bash_profile bash_profile
+install .bashrc bashrc
+install .zshrc zshrc
+install .gitconfig gitconfig
+install .hgrc hgrc
+install .screenrc screenrc
+install .tmux.conf tmux.conf
+install .config/fish/config.fish config.fish
 
-bal .profile profile
-bal .inputrc inputrc
-bal .bash_profile bash_profile
-bal .bashrc bashrc
-bal .zshrc zshrc
-bal .config/fish/config.fish config.fish
-bal .gitconfig gitconfig
-bal .hgrc hgrc
-bal .screenrc screenrc
-bal .tmux.conf tmux.conf
-bal .terminfo/r/rxvt-256color terminfo/rxvt-256color
+test -d "${HOME}/.terminfo/r" && install .terminfo/r/rxvt-256color terminfo/rxvt-256color
 
-bal .xinitrc x/xinitrc
-bal .XCompose x/XCompose
-bal .Xdefaults x/Xdefaults
-bal .Xdefaults.colors x/colors.zenburn
-bal .gtkrc-2.0 x/gtkrc-2.0
-bal .fonts.conf x/fonts.conf
-bal .pentadactylrc x/pentadactylrc
+if [ "$1" = "x" ]; then
+    install .xinitrc x/xinitrc
+    install .XCompose x/XCompose
+    install .Xdefaults x/Xdefaults
+    install .Xdefaults.colors x/colors.zenburn
+    install .gtkrc-2.0 x/gtkrc-2.0
+    install .fonts.conf x/fonts.conf
+    install .pentadactylrc x/pentadactylrc
+fi
 
 cd - >/dev/null

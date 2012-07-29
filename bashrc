@@ -9,8 +9,8 @@ export GREP_OPTIONS='--color=auto'
 export PENTADACTYL_RUNTIME="$HOME/.cache/pentadactyl"
 
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-PATH="/usr/X11/bin:$PATH"
-PATH="$HOME/bin:$PATH"
+test -d "/usr/X11/bin" && PATH="/usr/X11/bin:${PATH}"
+test -d "${HOME}/bin" && PATH="${HOME}/bin:${PATH}"
 # }}}1
 
 # Prompt {{{1
@@ -96,14 +96,24 @@ fi
 # }}}1
 
 # Aliases {{{1
-alias ls='ls -F'
-alias ll='ls -lh'
-alias la='ll -a'
-alias l='ll'
+if which tree >/dev/null 2>&1; then
+    alias l1='tree --dirsfirst -ChFL 1'
+    alias l2='tree --dirsfirst -ChFL 2'
+    alias l3='tree --dirsfirst -ChFL 3'
+    alias ll1='tree --dirsfirst -ChFupDaL 1'
+    alias ll2='tree --dirsfirst -ChFupDaL 2'
+    alias ll3='tree --dirsfirst -ChFupDaL 3'
+    alias l='l1'
+    alias ll='ll1'
+else
+    alias ls='ls -F'
+    alias ll='ls -lh'
+    alias la='ll -a'
+    alias l='ll'
+fi
 
 alias g='git'
-test -r "${HOME}/.local/alias" && source "${HOME}/.local/alias"
 # }}}1
 
 # Local settings
-[ -f "${HOME}/.local/bashrc" ] && source "${HOME}/.local/bashrc"
+[ -r "${HOME}/.local/bashrc" ] && source "${HOME}/.local/bashrc"
