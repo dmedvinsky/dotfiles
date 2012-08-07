@@ -28,6 +28,8 @@ install .hgrc hgrc
 install .screenrc screenrc
 install .tmux.conf tmux.conf
 install .config/fish/config.fish config.fish
+(cd ${DOTFILES_DIR}/vim && make)
+install .vim vim
 
 test -d "${HOME}/.terminfo/r" && install .terminfo/r/rxvt-256color terminfo/rxvt-256color
 
