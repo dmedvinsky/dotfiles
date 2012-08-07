@@ -1,2 +1,2 @@
-#!/usr/bin/env sh
-exec /usr/bin/offlineimap -c $HOME/.config/offlineimap/config $@
+#!/usr/bin/env bash
+exec /usr/bin/offlineimap -c "${HOME}/.config/offlineimap/config" $@
