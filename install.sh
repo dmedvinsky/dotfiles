@@ -39,6 +39,9 @@ if [ "$1" = "x" ]; then
     install .gtkrc-2.0 x/gtkrc-2.0
     install .fonts.conf x/fonts.conf
     install .pentadactylrc x/pentadactylrc
+    mkdir -p "${HOME}/.xmonad"
+    install .xmonad/xmonad.hs x/xmonad.hs
+    install .xmonad/xmobarrc x/xmobarrc
 fi
 
 cd - >/dev/null
