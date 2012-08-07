@@ -27,6 +27,8 @@ set -g -x PAGER less
 
 set -g -x GREP_OPTIONS '--color=auto'
 set -g -x PENTADACTYL_RUNTIME "$HOME/.cache/pentadactyl"
+set -g -x CMUS_HOME "$HOME/.config/cmus"
+set -g -x GIMP2_DIRECTORY "$HOME/.config/gimp"
 
 # Python
 set -g -x PIP_DOWNLOAD_CACHE "$HOME/.pip/cache"
