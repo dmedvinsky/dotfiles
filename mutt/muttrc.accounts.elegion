@@ -1,0 +1,9 @@
+set from      = "dmitry.medvinsky@e-legion.com"
+set sendmail  = "msmtp -a elegion"
+
+set folder    = "~/.mail/elegion"
+    set spoolfile = "=INBOX"
+    set record    = "=sent"
+    set postponed = "=drafts"
+    set trash     = "=trash"
+set folder    = "~/.mail"

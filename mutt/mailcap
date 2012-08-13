@@ -1,0 +1,9 @@
+image/jpeg;  ~/.config/mutt/view_attachment.sh feh %s; test=sh -c 'test $DISPLAY'
+image/png;   ~/.config/mutt/view_attachment.sh feh %s; test=sh -c 'test $DISPLAY'
+image/gif;   ~/.config/mutt/view_attachment.sh feh %s; test=sh -c 'test $DISPLAY'
+image/jpeg;  ~/.config/mutt/view_attachment.sh open %s; test=sh -c 'which open'
+image/png;   ~/.config/mutt/view_attachment.sh open %s; test=sh -c 'which open'
+image/gif;   ~/.config/mutt/view_attachment.sh open %s; test=sh -c 'which open'
+
+text/html;   ~/.config/mutt/view_attachment.sh firefox %s; test=sh -c 'test $DISPLAY'
+text/html;   elinks -dump %s; nametemplate=%s.html; copiousoutput

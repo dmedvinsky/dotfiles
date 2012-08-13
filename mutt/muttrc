@@ -1,0 +1,134 @@
+# vi: fdm=marker
+set my_cfgdir   = "$HOME/.config/mutt"
+set my_cachedir = "$HOME/.cache/mutt"
+
+# It's year 2012
+set assumed_charset   = "utf-8"
+set charset           = "utf-8"
+set config_charset    = "utf-8"
+set send_charset      = "utf-8"
+
+# Paths {{{
+set alias_file        = "$my_cfgdir/aliases"
+set mailcap_path      = "$my_cfgdir/mailcap"
+set header_cache      = "$my_cachedir/headers"
+set message_cachedir  = "$my_cachedir/bodies"
+set tmpdir            = "$my_cachedir"
+set signature         = "$my_cfgdir/sig"
+# }}}
+
+# Main options {{{
+set mail_check        = 10                           # minimum time between scans
+set sort_alias        = alias                        # sort alias file by alias
+set timeout           = 10                           # idle time before scanning
+set reverse_alias                                    # show names from alias file in index
+set beep_new                                         # bell on new mails
+set copy                                             # save sent messages
+set delete                                           # don't ask, just do
+set hidden_host                                      # hide machine hostname
+set imap_check_subscribed                            # check only subscribed folders
+set imap_idle                                        # use IMAP IDLE
+set pipe_decode                                      # strip headers and eval mimes when piping
+set quit                                             # don't ask, just do
+set rfc2047_parameters                               # save attachments with sane names
+set thorough_search                                  # strip headers and eval mimes before searching
+unset confirmappend                                  # don't ask, just do
+unset maildir_trash                                  # unlink deleted messages
+unset mark_old                                       # read/unread is good enough
+unset move                                           # don't move read messages
+# }}}
+
+# Index options {{{
+set sort              = threads                      # threaded view
+set uncollapse_jump                                  # don't collapse on an unread message
+unset help                                           # help is for pussies
+unset suspend                                        # don't suspend on ^Z
+# }}}
+
+# Pager options {{{
+set menu_scroll                                      # scroll in menus
+set pager_context     = 5                            # number of context lines to show
+set pager_index_lines = 10                           # number of index lines to show
+set pager_stop                                       # don't go to next message automatically
+set smart_wrap                                       # don't split words
+set tilde                                            # show tildes like in vim
+unset markers                                        # no ugly plus signs
+alternative_order text/plain text/enriched text/html # save html for last
+set quote_regexp      = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+# }}}
+
+# Formats {{{
+set attach_format     = "%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
+set date_format       = "%d %b %H:%M"
+set folder_format     = "%2C %t %N %f"
+set index_format      = "[%Z]  %D  %-20.20F  %s"
+#set pager_format      = "[%4C/%4m] (%S%Z) %%=%N $i %> [%lL]"
+set status_format     = "-%r- %v ---[ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? %l? ]%?p?---- .: %p waiting to send :. ?--%>- (%P) ---"
+# }}}
+
+# Message composition {{{
+set attribution       = "On %d, %n wrote:"           # set the attribution
+set editor            = "vim -c 'normal! }' -c 'redraw' -c 'set titleold=mail'"
+set forward_format    = "Fwd: %s"                    # format for subject when forwarding
+set include           = yes                          # include message in replies
+set recall            = no                           # ask to recall postponed
+set sendmail_wait     = 0                            # wait for sendmail to repsond, we don't wanna loose some emails
+set abort_nosubject                                  # disallow empty subjects
+set abort_unmodified                                 # discard unmodified email
+set allow_8bit                                       # do not base64 or mangle msgs
+set askcc                                            # ask for CC:
+set edit_headers                                     # show headers when composing
+set fast_reply                                       # skip to compose when replying
+set fcc_attach                                       # save attachments with the body
+set forward_decode                                   # decode when forwarding
+set mime_forward                                     # forward attachments
+set mime_forward_rest                                # forward the rest of mime msg
+set reply_to                                         # reply to Reply to: field
+set reverse_name                                     # reply as whomever it was to
+set sig_dashes                                       # two dashes before the sig
+set write_bcc                                        # Bcc header in file to send
+unset fcc_clear
+# }}}
+
+# Headers & Attachments {{{
+ignore     *
+unignore   from: to: cc: bcc: date: reply-to: subject:
+hdr_order  from: to: cc: bcc: date: reply-to: subject:
+my_hdr     X-Jedi: May the Force be with you.
+
+auto_view  text/html
+# }}}
+
+# Bindings & Macros {{{
+bind index w        noop
+bind index p        noop
+bind index g        noop
+bind index x        noop
+
+bind index <tab>    sync-mailbox
+bind index gg       first-entry
+bind index G        last-entry
+bind index M        recall-message
+bind index <space>  collapse-thread
+
+bind pager /        search
+bind pager k        previous-line
+bind pager j        next-line
+bind pager gg       top
+bind pager G        bottom
+
+bind index,pager \# noop
+bind index,pager R  group-reply
+
+macro index <esc>f     ":set date_format = \"%d %b %H:%M\"<enter>"                  "short date format"
+macro index <esc>F     ":set date_format = \"%Y-%m-%d %H:%M:%S %z\"<enter>"         "long date format"
+macro index \Cr        "<tag-prefix><clear-flag>N"                                  "mark tagged messages as read"
+macro index \CR        "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+macro index gi         "<change-folder>!<enter>"                                    "go to Inbox"
+macro index gs         "<change-folder>=sent<enter>"                                "go to Sent Mail"
+# }}}
+
+source $alias_file
+source $my_cfgdir/muttrc.gpg
+source $my_cfgdir/muttrc.colors.badwolf
+source $my_cfgdir/muttrc.accounts

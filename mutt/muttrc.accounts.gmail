@@ -1,0 +1,10 @@
+set from      = "dmedvinsky@gmail.com"
+set sendmail  = "msmtp -a gmail"
+
+set folder    = "~/.mail/gmail"
+    set spoolfile = "=INBOX"
+    unset record
+    set postponed = "=drafts"
+    set trash     = "=trash"
+    set mbox      = "=archive"
+set folder    = "~/.mail"
