@@ -93,7 +93,6 @@ myManageHook = composeAll
                                   <+> doFullFloat
 
   , title     =? "mail"           --> doShift "4"
-  , title     =? "gmail"          --> doShift "4"
   , className =? "Skype"          --> doShift "="
 
   , className =? "Gimp"           --> doShift "5"
@@ -217,7 +216,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- , ((0, 0x1008ff1b), spawn "")
     -- keycode 163 (keysym 0x1008ff19, XF86Mail)
     , ((0, 0x1008ff19), spawn $ termCmd "mail")
-    , ((modMask, 0x1008ff19), spawn $ termCmd "gmail")
 
     -- keycode 192 (keysym 0x1008ff45, XF86Launch5)
     , ((0, 0x1008FF45), spawn "skype")
