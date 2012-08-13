@@ -26,8 +26,6 @@ set beep_new                                         # bell on new mails
 set copy                                             # save sent messages
 set delete                                           # don't ask, just do
 set hidden_host                                      # hide machine hostname
-set imap_check_subscribed                            # check only subscribed folders
-set imap_idle                                        # use IMAP IDLE
 set pipe_decode                                      # strip headers and eval mimes when piping
 set quit                                             # don't ask, just do
 set rfc2047_parameters                               # save attachments with sane names
