@@ -11,6 +11,10 @@ test -d "/usr/bin/vendor_perl"; and set PATH "/usr/bin/vendor_perl" $PATH
 test -d "$HOME/.android/sdk/tools"; and set PATH "$HOME/.android/sdk/tools" $PATH
 test -d "$HOME/.android/sdk/platform-tools"; and set PATH "$HOME/.android/sdk/platform-tools" $PATH
 test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
+begin
+    set -l gemdir (ruby -rubygems -e "puts Gem.user_dir")/bin
+    test -n "$gemdir" -a -d "$gemdir"; and set PATH "$gemdir" $PATH
+end
 test -d "$HOME/bin"; and set PATH "$HOME/bin" $PATH
 
 set -g -x fish_greeting ''
