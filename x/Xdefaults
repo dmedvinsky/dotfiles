@@ -21,14 +21,16 @@ Rxvt.cursorBlink          : false
 Rxvt.cursorUnderline      : false
 Rxvt.pointerBlank         : true
 
-Rxvt.perl-ext-common      : default,font-size,url-select,matcher
-Rxvt.urlLauncher          : firefox
+Rxvt.perl-ext-common      : default,clipboard,url-select,matcher,keyboard-select
+Rxvt.url-select.launcher  : luakit
+Rxvt.url-select.underline : true
+Rxvt.urlLauncher          : luakit
 Rxvt.underlineURLs        : true
 Rxvt.matcher.button       : 3
-Rxvt.colorUL              : #6090ff
 Rxvt.keysym.M-u:      perl:url-select:select_next
-Rxvt.keysym.C-Up:     perl:font-size :increase
-Rxvt.keysym.C-Down:   perl:font-size :decrease
+Rxvt.keysym.M-Escape: perl:keyboard-select:activate
+Rxvt.keysym.M-s:      perl:keyboard-select:search
+
 
 Rxvt.font:             xft:Ubuntu Mono:pixelsize=14
 Rxvt.boldFont:         xft:Ubuntu Mono:pixelsize=14
@@ -36,7 +38,7 @@ Rxvt.italicFont:       xft:Ubuntu Mono:pixelsize=14
 Rxvt.boldItalicFont:   xft:Ubuntu Mono:pixelsize=14
 ! }}}
 
-
+Rxvt.colorUL              : #6090ff
 #include "/home/dmedvinsky/.Xdefaults.colors"
 
 
