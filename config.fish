@@ -153,6 +153,12 @@ alias gba 'git branch -a'
 alias gri 'git rebase --interactive'
 # }}}
 
+# Key bindings {{{
+function fish_user_keybindings
+    bind \ck accept-autosuggestion
+end
+# }}}
+
 # Functions {{{
 function venv
     set -l curdir (pwd)
