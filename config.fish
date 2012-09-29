@@ -174,7 +174,7 @@ function venv
             set venv (cat "$locenv")
         else
             # If there is no env in repo root, use one from ~/.pyenv/.
-    set -l projectname (basename "$gitroot")
+            set -l projectname (basename "$gitroot")
             set venv "$HOME/.pyenv/$projectname"
         end
     end
@@ -182,7 +182,7 @@ function venv
     if [ ! -r "$activate" ]
         echo "Cannot locate virtualenv for this project." >&2
     else
-    . "$activate"
+        . "$activate"
     end
 end
 # }}}
@@ -198,6 +198,7 @@ if status --is-interactive
     if which keychain >/dev/null 2>&1
         keychain --nogui --quick --quiet
         [ -e $HOME/.keychain/$HOSTNAME-fish ]; and . $HOME/.keychain/$HOSTNAME-fish
+        [ -e $HOME/.keychain/$HOSTNAME-fish-gpg ]; and . $HOME/.keychain/$HOSTNAME-fish-gpg
         # set SSH_AGENT_PID
         # set SSH_AUTH_SOCK
         # eval (keychain --eval -Q --quiet)
