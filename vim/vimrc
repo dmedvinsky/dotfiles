@@ -34,6 +34,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'wavded/vim-stylus'
 Bundle 'vim-scripts/indentpython.vim--nianyang'
 Bundle 'vim-scripts/VimClojure'
+Bundle 'aliva/vim-fish'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/Zenburn'
