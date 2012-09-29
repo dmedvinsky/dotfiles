@@ -310,6 +310,7 @@ if has("autocmd")
         autocmd FileType html,htmldjango,eco,yaml,coffee setlocal sw=2 sts=2 ts=2 et tw=0
         autocmd FileType mail setlocal wrap
         autocmd FileType python setlocal nosmartindent
+        autocmd FileType ruby,eruby setlocal sw=2 sts=2 ts=2 et
         autocmd FileType lisp setlocal commentstring=;;%s
         autocmd FileType css,less setlocal tw=0
         autocmd BufNewFile,BufRead *.sls setfiletype yaml
