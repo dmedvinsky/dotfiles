@@ -163,10 +163,27 @@ end
 function venv
     set -l curdir (pwd)
     set -l gitroot (git root)
+    set -l venv ""
+    set -l locenv "$gitroot/.env"
+    if [ -d "$locenv" ]
+        # Prefer local environment if exists.
+        set venv "$locenv"
+    else
+        if [ -f "$locenv" ]
+            # If .env is a file, there must be the path to the env.
+            set venv (cat "$locenv")
+        else
+            # If there is no env in repo root, use one from ~/.pyenv/.
     set -l projectname (basename "$gitroot")
-    set -l venv "$HOME/.pyenv/$projectname"
+            set venv "$HOME/.pyenv/$projectname"
+        end
+    end
     set -l activate "$venv/bin/activate.fish"
+    if [ ! -r "$activate" ]
+        echo "Cannot locate virtualenv for this project." >&2
+    else
     . "$activate"
+    end
 end
 # }}}
 
