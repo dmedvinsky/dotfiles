@@ -210,8 +210,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     [
     -- keycode 180 (keysym 0x1008ff18, XF86HomePage)
-      ((0, 0x1008ff18), spawn "firefox")
-    , ((modMask, 0x1008ff18), spawn "luakit")
+      ((0, 0x1008ff18), spawn "luakit")
+    , ((modMask, 0x1008ff18), spawn "firefox")
     -- keycode 225 (keysym 0x1008ff1b, XF86Search)
     -- , ((0, 0x1008ff1b), spawn "")
     -- keycode 163 (keysym 0x1008ff19, XF86Mail)
