@@ -64,7 +64,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 
 [Repository RemoteGmail]
 type = Gmail
-cert_fingerprint = f3043dd689a2e7dddfbef82703a6c65ea9b634c1
+sslcacertfile = ~/.config/offlineimap/equifax.crt
 maxconnections = 1
 remoteuser = dmedvinsky@gmail.com
 realdelete = no
