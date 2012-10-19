@@ -21,7 +21,7 @@ Rxvt.cursorBlink          : false
 Rxvt.cursorUnderline      : false
 Rxvt.pointerBlank         : true
 
-Rxvt.perl-ext-common      : default,clipboard,url-select,matcher,keyboard-select
+Rxvt.perl-ext-common      : default,clipboard,url-select,keyboard-select
 Rxvt.url-select.launcher  : luakit
 Rxvt.url-select.underline : true
 Rxvt.urlLauncher          : luakit
