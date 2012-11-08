@@ -6,10 +6,6 @@ DOTFILES_DIR=$(cd "${DIR}"; pwd)
 cd "${DIR}" || exit 1
 mkdir -p "${BACKUP_DIR}"
 mkdir -p "${HOME}/.config"
-if test -f "/usr/share/terminfo/r/rxvt-256color"; then :
-else
-    mkdir -p "${HOME}/.terminfo/r"
-fi
 
 install() {
     local dst=$1
@@ -31,19 +27,10 @@ install .config/fish/config.fish config.fish
 (cd ${DOTFILES_DIR}/vim && make)
 install .vim vim
 
-test -d "${HOME}/.terminfo/r" && install .terminfo/r/rxvt-256color terminfo/rxvt-256color
-
-if [ "$1" = "x" ]; then
-    install .xinitrc x/xinitrc
-    install .XCompose x/XCompose
-    install .Xdefaults x/Xdefaults
-    install .Xdefaults.colors x/colors.zenburn
-    install .gtkrc-2.0 x/gtkrc-2.0
-    install .fonts.conf x/fonts.conf
-    install .pentadactylrc x/pentadactylrc
-    mkdir -p "${HOME}/.xmonad"
-    install .xmonad/xmonad.hs x/xmonad.hs
-    install .xmonad/xmobarrc x/xmobarrc
+if test -f "/usr/share/terminfo/r/rxvt-256color"; then :
+else
+    mkdir -p "${HOME}/.terminfo/r"
+    install .terminfo/r/rxvt-256color terminfo/rxvt-256color
 fi
 
-cd - >/dev/null
+cd $OLDPWD
