@@ -82,7 +82,7 @@ set forward_decode                                   # decode when forwarding
 set mime_forward                                     # forward attachments
 set mime_forward_rest                                # forward the rest of mime msg
 set reply_to                                         # reply to Reply to: field
-set reverse_name                                     # reply as whomever it was to
+# set reverse_name                                     # reply as whomever it was to
 set sig_dashes                                       # two dashes before the sig
 set write_bcc                                        # Bcc header in file to send
 unset fcc_clear

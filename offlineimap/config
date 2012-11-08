@@ -1,17 +1,11 @@
 [general]
 metadata = ~/.cache/offlineimap
-accounts = elegion, gmail
+accounts = elegion, dmedvinsky
 maxsyncaccounts = 2
 ui = TTYUI
 ignore-readonly = no
 #socktimeout = 30
 fsync = false
-
-[mbnames]
-enabled = no
-
-[ui.Curses.Blinkenlights]
-statuschar = .
 
 [Account elegion]
 localrepository = LocalElegion
@@ -45,14 +39,14 @@ nametrans = lambda folder: {'Drafts':        'drafts',
                            }.get(folder, folder)
 
 
-[Account gmail]
-localrepository = LocalGmail
-remoterepository = RemoteGmail
+[Account dmedvinsky]
+localrepository = LocalDmedvinsky
+remoterepository = RemoteDmedvinsky
 status_backend = sqlite
 
-[Repository LocalGmail]
+[Repository LocalDmedvinsky]
 type = Maildir
-localfolders = ~/.mail/gmail
+localfolders = ~/.mail/dmedvinsky
 sep = .
 restoreatime = no
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
@@ -62,19 +56,18 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'archive': '[Gmail]/All Mail',
                             }.get(folder, folder)
 
-[Repository RemoteGmail]
+[Repository RemoteDmedvinsky]
 type = Gmail
 sslcacertfile = ~/.config/offlineimap/equifax.crt
 maxconnections = 1
-remoteuser = dmedvinsky@gmail.com
-realdelete = no
+remoteuser = me@dmedvinsky.name
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
                             '[Gmail]/Sent Mail': 'sent',
                             '[Gmail]/Starred':   'flagged',
                             '[Gmail]/Trash':     'trash',
                             '[Gmail]/All Mail':  'archive',
                             }.get(folder, folder)
-folderfilter = lambda folder: folder not in [#'[Gmail]/Trash',
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
                                              '[Gmail]/Important',
                                              '[Gmail]/Spam',
                                             ]

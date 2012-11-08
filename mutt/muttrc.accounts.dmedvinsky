@@ -1,0 +1,9 @@
+set from      = "me@dmedvinsky.name"
+set sendmail  = "msmtp -a dmedvinsky"
+
+set folder    = "~/.mail/dmedvinsky"
+    set spoolfile = "=INBOX"
+    set postponed = "=drafts"
+    set mbox      = "=archive"
+    unset record
+set folder    = "~/.mail"

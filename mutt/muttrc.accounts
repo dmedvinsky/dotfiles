@@ -1,11 +1,11 @@
 alternates    dmitry.medvinsky@e-legion.com dmedvinsky@e-legion.com dmedvinsky@gmail.com
 set realname  = "Dmitry Medvinsky"
 
-folder-hook elegion source $my_cfgdir/muttrc.accounts.elegion
-folder-hook gmail   source $my_cfgdir/muttrc.accounts.gmail
+folder-hook '^dmedvinsky' source $my_cfgdir/muttrc.accounts.dmedvinsky
+folder-hook '^elegion'    source $my_cfgdir/muttrc.accounts.elegion
 
 source $my_cfgdir/muttrc.accounts.elegion
 
 set folder    = "~/.mail"
 mailboxes =elegion/INBOX =elegion/sent
-mailboxes =gmail/INBOX =gmail/sent
+mailboxes =dmedvinsky/INBOX =dmedvinsky/sent
