@@ -1,6 +1,7 @@
 # vim: fdm=marker
 
 # Environment variables {{{
+# Path
 set PATH "/bin"
 set PATH "/sbin" $PATH
 set PATH "/usr/bin" $PATH
@@ -11,12 +12,20 @@ test -d "/usr/bin/vendor_perl"; and set PATH "/usr/bin/vendor_perl" $PATH
 test -d "$HOME/.android/sdk/tools"; and set PATH "$HOME/.android/sdk/tools" $PATH
 test -d "$HOME/.android/sdk/platform-tools"; and set PATH "$HOME/.android/sdk/platform-tools" $PATH
 test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
+test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
+test -d "$HOME/.rbenv/shims"; and set PATH "$HOME/.rbenv/shims" $PATH
 begin
     set -l gemdir (ruby -rubygems -e "puts Gem.user_dir")/bin
     test -n "$gemdir" -a -d "$gemdir"; and set PATH "$gemdir" $PATH
 end
 test -d "$HOME/bin"; and set PATH "$HOME/bin" $PATH
 
+# Globally recognised variables
+set -g -x VISUAL vim
+set -g -x EDITOR vim
+set -g -x PAGER less
+
+# Fish shell
 set -g -x fish_greeting ''
 set -g -x __fish_git_prompt_showdirtystate 1
 set -g -x __fish_git_prompt_showstashstate 1
@@ -25,10 +34,7 @@ set -g -x __fish_git_prompt_showupstream auto,verbose
 set -g -x __fish_git_prompt_color magenta
 set -g -x __fish_git_prompt_color_dirtystate red
 
-set -g -x VISUAL vim
-set -g -x EDITOR vim
-set -g -x PAGER less
-
+# Various programs
 set -g -x GREP_OPTIONS '--color=auto'
 set -g -x PENTADACTYL_RUNTIME "$HOME/.cache/pentadactyl"
 set -g -x CMUS_HOME "$HOME/.config/cmus"
@@ -38,6 +44,10 @@ set -g -x GIMP2_DIRECTORY "$HOME/.config/gimp"
 set -g -x PIP_DOWNLOAD_CACHE "$HOME/.pip/cache"
 set -g -x VIRTUAL_ENV_DISABLE_PROMPT true
 test -r "$HOME/.pythonrc.py"; and set -g -x PYTHONSTARTUP "$HOME/.pythonrc.py"
+
+# Ruby
+set -g -x RUBYOPT "-Ku"
+
 # }}}
 
 # Prompt {{{
@@ -107,15 +117,18 @@ end
 # }}}
 
 # Aliases {{{
+# Fish config editing
 alias ef   'vim ~/.config/fish/config.fish'
 alias rf   '. ~/.config/fish/config.fish'
 
+# Directories traversal
 alias ..   'cd ..'
 alias ...  'cd ../..'
 alias .... 'cd ../../..'
 alias cd.. 'cd ..'
 alias md   'mkdir -p'
 
+# Directories listing
 if which tree >/dev/null ^/dev/null
     alias l1  'tree --dirsfirst -ChFL 1'
     alias l2  'tree --dirsfirst -ChFL 2'
@@ -132,12 +145,14 @@ else
     alias l   'll'
 end
 
+# Arch Linux daemons
 if which rc.d >/dev/null ^/dev/null
     alias start   'sudo rc.d start'
     alias stop    'sudo rc.d stop'
     alias restart 'sudo rc.d restart'
 end
 
+# Git
 alias g   'git'
 alias gs  'git status'
 alias gd  'git diff'
@@ -161,6 +176,11 @@ end
 
 # Functions {{{
 function venv
+    # Activates Python virtualenv for current project.
+    # Supports reading .env.
+    # If that's directory with virtual env, activates it.
+    # If that's file, reads path to virtual env from there.
+    # Otherwise locates virtual env in ~/.pyenv/.
     set -l curdir (pwd)
     set -l gitroot (git root)
     set -l venv ""
@@ -187,11 +207,10 @@ function venv
 end
 # }}}
 
-# Local Settings {{{
+# Local Settings
 if test -s $HOME/.local/config.fish
     source $HOME/.local/config.fish
 end
-#normal }}}
 
 set -gx HOSTNAME (hostname)
 if status --is-interactive

@@ -72,5 +72,6 @@ xscreensaver.dateFormat                    : %H:%M %a %d %b %Y
 
 
 ! xautolock {{{
+Xautolock.time   : 5
 Xautolock.locker : i3lock
 ! }}}
