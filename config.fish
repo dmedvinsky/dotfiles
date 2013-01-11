@@ -167,6 +167,11 @@ alias gb  'git branch'
 alias ga. 'git add .'
 alias gba 'git branch -a'
 alias gri 'git rebase --interactive'
+
+# Pretty JSON
+alias ppjs 'python -m json.tool'
+alias ppjsl 'python -m json.tool | less'
+
 # }}}
 
 # Key bindings {{{
