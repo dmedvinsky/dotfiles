@@ -76,7 +76,7 @@ end
 function fish_prompt
     set last_status $status
 
-    printf '\n'
+    printf ' \n'
 
     # username
     set_color magenta
