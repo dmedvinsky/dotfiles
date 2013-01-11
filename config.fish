@@ -36,7 +36,8 @@ set -g -x __fish_git_prompt_color_dirtystate red
 
 # Various programs
 set -g -x GREP_OPTIONS '--color=auto'
-set -g -x PENTADACTYL_RUNTIME "$HOME/.cache/pentadactyl"
+set -g -x PENTADACTYL_RUNTIME "$HOME/.config/pentadactyl"
+set -g -x VIMPERATOR_RUNTIME "$HOME/.config/vimperator"
 set -g -x CMUS_HOME "$HOME/.config/cmus"
 set -g -x GIMP2_DIRECTORY "$HOME/.config/gimp"
 
