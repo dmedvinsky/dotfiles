@@ -34,6 +34,7 @@ unset confirmappend                                  # don't ask, just do
 unset maildir_trash                                  # unlink deleted messages
 unset mark_old                                       # read/unread is good enough
 unset move                                           # don't move read messages
+unset wait_key                                       # don't wait for key press after external command
 # }}}
 
 # Index options {{{
