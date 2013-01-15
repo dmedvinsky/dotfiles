@@ -221,11 +221,10 @@ end
 set -gx HOSTNAME (hostname)
 if status --is-interactive
     if which keychain >/dev/null 2>&1
-        keychain --nogui --quick --quiet
-        [ -e $HOME/.keychain/$HOSTNAME-fish ]; and . $HOME/.keychain/$HOSTNAME-fish
-        [ -e $HOME/.keychain/$HOSTNAME-fish-gpg ]; and . $HOME/.keychain/$HOSTNAME-fish-gpg
-        # set SSH_AGENT_PID
-        # set SSH_AUTH_SOCK
-        # eval (keychain --eval -Q --quiet)
+        set -lx KEYCHAIN_DIR "$HOME/.cache/keychain"
+        /usr/bin/keychain --dir "$KEYCHAIN_DIR" --nogui --quick --quiet --timeout 30
+        # /usr/bin/keychain --clear --dir "$KEYCHAIN_DIR" --nogui --quiet --timeout 30
+        [ -e "$KEYCHAIN_DIR/$HOSTNAME-fish" ]; and . "$KEYCHAIN_DIR/$HOSTNAME-fish"
+        [ -e "$KEYCHAIN_DIR/$HOSTNAME-fish-gpg" ]; and . "$KEYCHAIN_DIR/$HOSTNAME-fish-gpg"
     end
 end
