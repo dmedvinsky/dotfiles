@@ -119,8 +119,7 @@ myXmobarLogHook xmproc = dynamicLogWithPP $ xmobarPP {
 -- Layouts {{{
 myLayout = avoidStruts $
            onWorkspace "1" (myFull ||| myTiled) $
-           onWorkspace "-" (myGrid ||| myDragPaneV) $
-           onWorkspace "=" (myTabbed ||| Circle ||| myGrid) $
+           onWorkspace "=" (myTabbed ||| myTiled) $
            minimize $ myTiled
            ||| myFull
            ||| myTabbed
@@ -161,13 +160,12 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     ]
 -- }}}
 
-
 -- Key bindings {{{
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
     , ((modMask,               xK_q     ), restart "xmonad" True)
 
-    , ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    , ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
     , ((modMask,               xK_p     ), spawn $ "dmenu_run")
     , ((modMask,               xK_b     ), sendMessage ToggleStruts)
 
@@ -178,7 +176,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,            xK_BackSpace), withFocused (sendMessage . maximizeRestore))
     , ((modMask,               xK_j     ), windows W.focusDown)
     , ((modMask,               xK_k     ), windows W.focusUp)
-    , ((modMask,               xK_Return), windows W.focusMaster)
+    , ((modMask .|. shiftMask, xK_Return), windows W.focusMaster)
     , ((modMask .|. ctrlMask,  xK_Return), windows W.swapMaster)
     , ((modMask .|. shiftMask, xK_j     ), windows W.swapDown)
     , ((modMask .|. shiftMask, xK_k     ), windows W.swapUp)
@@ -197,12 +195,12 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     [
     -- keycode 180 (keysym 0x1008ff18, XF86HomePage)
-      ((0, 0x1008ff18), spawn "luakit")
-    , ((modMask, 0x1008ff18), spawn "firefox")
+      ((0, 0x1008ff18), spawn "firefox")
+    , ((modMask, 0x1008ff18), spawn "luakit")
     -- keycode 225 (keysym 0x1008ff1b, XF86Search)
     -- , ((0, 0x1008ff1b), spawn "")
     -- keycode 163 (keysym 0x1008ff19, XF86Mail)
-    , ((0, 0x1008ff19), spawn $ termCmd "mail")
+    , ((0, 0x1008ff19), spawn $ termCmd "mutt")
 
     -- keycode 192 (keysym 0x1008ff45, XF86Launch5)
     , ((0, 0x1008FF45), spawn "skype")
@@ -223,6 +221,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0, 0x1008ff13), spawn "amixer -q set Master 1+ unmute")
     -- keycode 172 (keysym 0x1008ff14, XF86AudioPlay)
     , ((0, 0x1008ff14), spawn "cmus-remote --pause")
+    , ((modMask, 0x1008ff11), spawn "cmus-remote --next")
+    , ((modMask, 0x1008ff13), spawn "cmus-remote --prev")
     , ((ctrlMask, 0x1008ff14), spawn "cmus-remote --stop")
     , ((modMask, 0x1008ff14), spawn $ termCmd $ "cmus")
 
