@@ -97,15 +97,9 @@ myManageHook = composeAll
   , className =? "feh"            --> doCenterFloat
   , className =? "MPlayer"        --> doCenterFloat
 
-  , className =? "Vim" <&&> stringProperty "WM_WINDOW_ROLE" =? "diff"
-                                  --> doFullFloat
-  , className =? "Vim" <&&> stringProperty "WM_WINDOW_ROLE" =? "merge"
-                                  --> doFullFloat
-
-  , currentWs =? "="              --> keepMaster ("dmitry.medvinsky" `isInfixOf`) title
+  -- , currentWs =? "="              --> keepMaster ("dmitry.medvinsky" `isInfixOf`) title
   ]
 -- }}}
-
 
 -- Status bars and logging {{{
 myXmobarLogHook xmproc = dynamicLogWithPP $ xmobarPP {
@@ -121,7 +115,6 @@ myXmobarLogHook xmproc = dynamicLogWithPP $ xmobarPP {
   , ppOutput          = hPutStrLn xmproc
 }
 -- }}}
-
 
 -- Layouts {{{
 myLayout = avoidStruts $
@@ -157,7 +150,6 @@ myLayout = avoidStruts $
         comboPane2  = myTabbed
         comboCondition = ClassName "URxvt"
 -- }}}
-
 
 -- Mouse bindings and options {{{
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
@@ -275,7 +267,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 -- }}}
 
-
 -- Utility functions {{{
 data Host = Work | Home | Other
   deriving (Eq, Read, Show)
@@ -296,6 +287,5 @@ termCmd cmd = termCmdWithName cmd cmd
 myBinDir = "/home/dmedvinsky/bin/"
 myBin = (++) myBinDir
 -- }}}
-
 
 -- vim: fdm=marker
