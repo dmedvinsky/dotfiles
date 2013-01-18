@@ -92,12 +92,7 @@ myManageHook = composeAll
                                   --> doShift "-"
                                   <+> doFullFloat
 
-  , title     =? "mail"           --> doShift "4"
-  , className =? "Skype"          --> doShift "="
-
-  , className =? "Gimp"           --> doShift "5"
-  , className =? "Gimp" <&&> ((liftM not) (stringProperty "WM_WINDOW_ROLE" =? "gimp-image-window"))
-                                  --> doCenterFloat
+  , className =? "Skype"          --> doShift "=" <+> doFloat
   , className =? "Keepassx"       --> doFloat
   , className =? "feh"            --> doCenterFloat
   , className =? "MPlayer"        --> doCenterFloat
