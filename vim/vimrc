@@ -38,6 +38,7 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'aliva/vim-fish'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'derekwyatt/vim-scala'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/Zenburn'
