@@ -117,70 +117,50 @@ function fish_prompt
 end
 # }}}
 
-# Aliases {{{
+# Functions {{{
 # Fish config editing
-alias ef   'vim ~/.config/fish/config.fish'
-alias rf   '. ~/.config/fish/config.fish'
+function ef; vim ~/.config/fish/config.fish; end
+function rf; . ~/.config/fish/config.fish; end
 
 # Directories traversal
-alias ..   'cd ..'
-alias ...  'cd ../..'
-alias .... 'cd ../../..'
-alias cd.. 'cd ..'
-alias md   'mkdir -p'
+function ..; cd ..; end
+function ...; cd ../..; end
+function ....; cd ../../..; end
+function cd..; cd ..; end
+function md; mkdir -p $argv; end
 
 # Directories listing
 if which tree >/dev/null ^/dev/null
-    alias l1  'tree --dirsfirst -ChFL 1'
-    alias l2  'tree --dirsfirst -ChFL 2'
-    alias l3  'tree --dirsfirst -ChFL 3'
-    alias ll1 'tree --dirsfirst -ChFupDaL 1'
-    alias ll2 'tree --dirsfirst -ChFupDaL 2'
-    alias ll3 'tree --dirsfirst -ChFupDaL 3'
-    alias l   'l1'
-    alias ll  'll1'
+    function l1;  tree --dirsfirst -ChFL 1 $argv; end
+    function l2;  tree --dirsfirst -ChFL 2 $argv; end
+    function l3;  tree --dirsfirst -ChFL 3 $argv; end
+    function ll1; tree --dirsfirst -ChFupDaL 1 $argv; end
+    function ll2; tree --dirsfirst -ChFupDaL 2 $argv; end
+    function ll3; tree --dirsfirst -ChFupDaL 3 $argv; end
+    function l;   l1 $argv; end
+    function ll;  ll1 $argv; end
 else
-    alias ls  'ls -F'
-    alias ll  'ls -lh'
-    alias la  'll -a'
-    alias l   'll'
-end
-
-# Arch Linux daemons
-if which rc.d >/dev/null ^/dev/null
-    alias start   'sudo rc.d start'
-    alias stop    'sudo rc.d stop'
-    alias restart 'sudo rc.d restart'
+    function ls; ls -F $argv; end
+    function ll; ls -lh $argv; end
+    function la; ll -a $argv; end
+    function l;  ll $argv; end
 end
 
 # Git
-alias g   'git'
-alias gs  'git status'
-alias gd  'git diff'
-alias ga  'git add'
-alias go  'git checkout'
-alias gc  'git commit -v'
-alias gca 'git commit -v --amend'
-alias gp  'git pull'
-alias gpr 'git pull --rebase'
-alias gb  'git branch'
-alias ga. 'git add .'
-alias gba 'git branch -a'
-alias gri 'git rebase --interactive'
+function g;   git $argv; end
+function gs;  git status $argv; end
+function gd;  git diff $argv; end
+function ga;  git add $argv; end
+function go;  git checkout $argv; end
+function gc;  git commit -v $argv; end
+function gca; git commit -v --amend $argv; end
+function gp;  git pull $argv; end
+function gpr; git pull --rebase $argv; end
+function gb;  git branch $argv; end
+function ga.; git add . $argv; end
+function gba; git branch -a $argv; end
+function gri; git rebase --interactive $argv; end
 
-# Pretty JSON
-alias ppjs 'python -m json.tool'
-alias ppjsl 'python -m json.tool | less'
-
-# }}}
-
-# Key bindings {{{
-function fish_user_key_bindings
-    bind \ck accept-autosuggestion
-end
-# }}}
-
-# Functions {{{
 function venv
     # Activates Python virtualenv for current project.
     # Supports reading .env.
@@ -210,6 +190,12 @@ function venv
     else
         . "$activate"
     end
+end
+# }}}
+
+# Key bindings {{{
+function fish_user_key_bindings
+    # bind \ck accept-autosuggestion
 end
 # }}}
 
