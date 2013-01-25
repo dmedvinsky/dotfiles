@@ -12,7 +12,7 @@ set send_charset      = "utf-8"
 set alias_file        = "$my_cfgdir/aliases"
 set mailcap_path      = "$my_cfgdir/mailcap"
 set header_cache      = "$my_cachedir/headers"
-set message_cachedir  = "$my_cachedir/bodies"
+# set message_cachedir  = "$my_cachedir/bodies"
 set tmpdir            = "$my_cachedir"
 set signature         = "$my_cfgdir/sig"
 # }}}
