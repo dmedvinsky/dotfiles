@@ -94,7 +94,7 @@ myManageHook = composeAll
 
   , className =? "Skype"          --> doShift "=" <+> doFloat
   , className =? "Keepassx"       --> doFloat
-  , className =? "feh"            --> doCenterFloat
+  , className =? "feh"            --> doFullFloat
   , className =? "MPlayer"        --> doCenterFloat
 
   -- , currentWs =? "="              --> keepMaster ("dmitry.medvinsky" `isInfixOf`) title
