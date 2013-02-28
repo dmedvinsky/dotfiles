@@ -221,8 +221,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0, 0x1008ff13), spawn "amixer -q set Master 1+ unmute")
     -- keycode 172 (keysym 0x1008ff14, XF86AudioPlay)
     , ((0, 0x1008ff14), spawn "cmus-remote --pause")
-    , ((modMask, 0x1008ff11), spawn "cmus-remote --next")
-    , ((modMask, 0x1008ff13), spawn "cmus-remote --prev")
+    , ((modMask, 0x1008ff11), spawn "cmus-remote --prev")
+    , ((modMask, 0x1008ff13), spawn "cmus-remote --next")
     , ((ctrlMask, 0x1008ff14), spawn "cmus-remote --stop")
     , ((modMask, 0x1008ff14), spawn $ termCmd $ "cmus")
 
