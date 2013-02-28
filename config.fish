@@ -161,6 +161,9 @@ function ga.; git add . $argv; end
 function gba; git branch -a $argv; end
 function gri; git rebase --interactive $argv; end
 
+# Tmux
+function ta; tmux attach $argv; end
+
 function venv
     # Activates Python virtualenv for current project.
     # Supports reading .env.
