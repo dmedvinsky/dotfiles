@@ -22,14 +22,14 @@
     whitespace = fix
 [diff]
     renames = copies
-    tool = vimdiff-g
+    tool = vimdiff
 [merge]
     stat = true
     conflictstyle = diff3
-    tool = threesome
-[difftool "vimdiff-g"]
+    tool = splice
+[difftool "vimdiff"]
     cmd = "vim -d -f $LOCAL $REMOTE"
-[mergetool "threesome"]
+[mergetool "splice"]
     cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true
 [difftool]
