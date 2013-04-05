@@ -22,9 +22,9 @@ Rxvt.cursorUnderline      : false
 Rxvt.pointerBlank         : true
 
 Rxvt.perl-ext-common      : default,clipboard,url-select,keyboard-select
-Rxvt.url-select.launcher  : luakit
+Rxvt.url-select.launcher  : firefox
 Rxvt.url-select.underline : true
-Rxvt.urlLauncher          : luakit
+Rxvt.urlLauncher          : firefox
 Rxvt.underlineURLs        : true
 Rxvt.matcher.button       : 3
 Rxvt.keysym.M-u:      perl:url-select:select_next
