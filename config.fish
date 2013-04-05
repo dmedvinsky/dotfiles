@@ -14,6 +14,7 @@ test -d "$HOME/.android/sdk/platform-tools"; and set PATH "$HOME/.android/sdk/pl
 test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
 test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
 test -d "$HOME/.rbenv/shims"; and set PATH "$HOME/.rbenv/shims" $PATH
+test -d "/opt/vagrant"; and set PATH "/opt/vagrant/bin" $PATH
 begin
     set -l gemdir (ruby -rubygems -e "puts Gem.user_dir")/bin
     test -n "$gemdir" -a -d "$gemdir"; and set PATH "$gemdir" $PATH
