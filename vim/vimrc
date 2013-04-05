@@ -7,8 +7,8 @@ call vundle#rc()
 " Bundles {{{1
 Bundle 'gmarik/vundle'
 
-Bundle 'ervandew/supertab'
 Bundle 'kien/ctrlp.vim'
+Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
@@ -16,32 +16,22 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-ragtag'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-scripts/camelcasemotion'
-Bundle 'vim-scripts/ReplaceWithRegister'
-Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'godlygeek/tabular'
-Bundle 'gregsexton/MatchTag'
+Bundle 'vim-scripts/camelcasemotion'
+Bundle 'vim-scripts/ZoomWin'
+
 Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
 
 Bundle 'tpope/vim-git'
-Bundle 'othree/html5.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'groenewege/vim-less'
-Bundle 'wavded/vim-stylus'
-Bundle 'vim-scripts/indentpython.vim--nianyang'
-Bundle 'vim-scripts/VimClojure'
 Bundle 'aliva/vim-fish'
-Bundle 'leafgarland/typescript-vim'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'derekwyatt/vim-scala'
+Bundle 'othree/html5.vim'
+Bundle 'vim-scripts/VimClojure'
+Bundle 'kchmck/vim-coffee-script'
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/Zenburn'
 Bundle 'sjl/badwolf'
 " }}}1
 
@@ -119,7 +109,7 @@ set wildignore+=*.sw?
 set wildignore+=*.DS_Store?
 set wildignore+=*.mo
 set wildignore+=node_modules
-set wildignore+=env
+set wildignore+=.env
 
 set nobackup
 set directory=$HOME/.vim/tmp
@@ -179,11 +169,6 @@ let mapleader = ","
 let maplocalleader = "\\"
 set pastetoggle=<F12>
 
-nnoremap ; :
-
-inoremap jj <ESC>
-inoremap jk <ESC>
-inoremap kj <ESC>
 
 nnoremap j gj
 nnoremap k gk
@@ -303,6 +288,10 @@ let g:uritality_color_normal = "#aeee00"
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['java'] }
+
+let g:NERDTreeBookmarksFile = $HOME.".cache/NERDTreeBookmarks"
+" let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMinimalUI = 1
 " }}}1
 
 " Autocommands {{{1
@@ -327,26 +316,22 @@ if has("autocmd")
         autocmd FocusLost * :wa
         autocmd VimResized * exe "normal! \<c-w>="
     augroup END " }}}2
+
+    augroup Whitespace " {{{2
+        autocmd!
+        " Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+        autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=#382424
+        autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+        " the above flashes annoyingly while typing, be calmer in insert mode
+        autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+        autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    augroup END " }}}2
 end
 " }}}1
 
 " Commands {{{1
-command! -bar Invert :let &background = (&background == "light" ? "dark" : "light")
 
-function! OpenURL(url)
-    if has("win32")
-        exe "!start cmd /cstart /b ".a:url.""
-    elseif $DISPLAY !~ '^\w'
-        exe "silent !firefox \"".a:url."\""
-    else
-        exe "silent !firefox -T \"".a:url."\""
-    endif
-    redraw!
-endfunction
-command! -nargs=1 OpenURL :call OpenURL(<q-args>)
-nnoremap gG :OpenURL https://encrypted.google.com/search?q=<cword><CR>
-
-
+" Visual star {{{
 function! s:VSetSearch()
   let temp = @@
   norm! gvy
@@ -356,7 +341,7 @@ endfunction
 
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-
+" }}}
 
 " Next and Last {{{
 
@@ -410,6 +395,19 @@ function! s:NextTextObject(motion, dir)
 endfunction
 " }}}
 
+" Fix whitespace {{{
+highlight ExtraWhitespace ctermbg=darkred guibg=#382424
+
+function! s:FixWhitespace(line1,line2)
+    let l:save_cursor = getpos(".")
+    silent! execute ':' . a:line1 . ',' . a:line2 . 's/\s\+$//'
+    call setpos('.', l:save_cursor)
+endfunction
+
+" Run :FixWhitespace to remove end of line white space.
+command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
+" }}}
+
 " }}}
 
 " Abbreviations {{{1
@@ -424,7 +422,6 @@ endfunction
 
 call MakeSpacelessIabbrev('***', '*args, **kwargs')
 call MakeSpacelessIabbrev('pdb', 'import pdb; pdb.set_trace()')
-iabbrev dm@ dmedvinsky@gmail.com
 
 iab wekk week
 iab Wekk Week
