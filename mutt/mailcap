@@ -6,4 +6,4 @@ image/png;   ~/.config/mutt/view_attachment.sh feh %s; test=sh -c 'test $DISPLAY
 image/gif;   ~/.config/mutt/view_attachment.sh feh %s; test=sh -c 'test $DISPLAY'
 
 text/html;   ~/.config/mutt/view_attachment.sh firefox %s; test=sh -c 'test $DISPLAY'
-text/html;   elinks -dump %s; nametemplate=%s.html; copiousoutput
+text/html;   w3m -I %{charset} -T text/html -o display_link_number=1; nametemplate=%s.html; copiousoutput
