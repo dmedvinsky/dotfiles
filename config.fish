@@ -147,6 +147,8 @@ else
     function l;  ll $argv; end
 end
 
+function less; command less -R $argv; end
+
 # Git
 function g;   git $argv; end
 function gs;  git status $argv; end
@@ -164,6 +166,13 @@ function gri; git rebase --interactive $argv; end
 
 # Tmux
 function ta; tmux attach $argv; end
+
+# Systemd
+if which systemctl >/dev/null ^/dev/null
+    function start; sudo systemctl start $argv; end
+    function stop; sudo systemctl stop $argv; end
+    function restart; sudo systemctl restart $argv; end
+end
 
 function venv
     # Activates Python virtualenv for current project.
