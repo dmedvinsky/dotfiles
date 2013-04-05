@@ -25,13 +25,14 @@
 <Multi_key> <t> <m>             : "™"   U2122        # TRADE MARK SIGN
 <Multi_key> <o>                 : "°"   degree       # DEGREE SIGN
 
-<Multi_key> <less> <minus>      : "←" U2190
-<Multi_key> <minus> <greater>   : "→" U2192
-<Multi_key> <less> <greater>    : "↔" U2194
-<Multi_key> <asciicircum> <bar> : "↑" U2191
-<Multi_key> <bar> <asciicircum> : "↑" U2191
-<Multi_key> <v> <bar>           : "↓" U2193
-<Multi_key> <bar> <v>           : "↓" U2193
+<Multi_key> <less> <minus>              : "←" U2190
+<Multi_key> <minus> <greater>           : "→" U2192
+<Multi_key> <minus> <minus> <greater>   : "↠" U21a0
+<Multi_key> <less> <greater>            : "↔" U2194
+<Multi_key> <asciicircum> <bar>         : "↑" U2191
+<Multi_key> <bar> <asciicircum>         : "↑" U2191
+<Multi_key> <v> <bar>                   : "↓" U2193
+<Multi_key> <bar> <v>                   : "↓" U2193
 
 <Multi_key> <1> <slash> <2>: "½" onehalf # VULGAR FRACTION ONE HALF
 <Multi_key> <1> <slash> <4>: "¼" onequarter # VULGAR FRACTION ONE QUARTER
