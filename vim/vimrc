@@ -108,6 +108,7 @@ set wildignore+=*.spl
 set wildignore+=*.sw?
 set wildignore+=*.DS_Store?
 set wildignore+=*.mo
+set wildignore+=*.class
 set wildignore+=node_modules
 set wildignore+=.env
 
