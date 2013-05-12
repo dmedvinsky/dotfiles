@@ -249,11 +249,6 @@ nnoremap <silent> <leader>gr :Gread<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
 nnoremap <silent> <leader>gg :Ggrep <C-r><C-w><CR>
 
-nnoremap <leader>a= :Tabularize /=<CR>
-vnoremap <leader>a= :Tabularize /=<CR>
-nnoremap <leader>a: :Tabularize /:\zs<CR>
-vnoremap <leader>a: :Tabularize /:\zs<CR>
-
 nnoremap <F6> :GundoToggle<CR>
 nnoremap <F7> :SyntasticCheck<CR>
 
