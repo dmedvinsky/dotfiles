@@ -31,6 +31,7 @@ Bundle 'aliva/vim-fish'
 Bundle 'othree/html5.vim'
 Bundle 'vim-scripts/VimClojure'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'derekwyatt/vim-scala'
 
 Bundle 'sjl/badwolf'
 " }}}1
