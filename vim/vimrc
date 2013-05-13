@@ -20,11 +20,8 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'godlygeek/tabular'
 Bundle 'vim-scripts/camelcasemotion'
-Bundle 'vim-scripts/ZoomWin'
 
 Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
 
 Bundle 'tpope/vim-git'
 Bundle 'aliva/vim-fish'
