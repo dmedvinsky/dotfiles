@@ -9,10 +9,9 @@ fi
 # Custom keyboard hacks.
 [ -f "${HOME}/.Xmodmap" ] && xmodmap "${HOME}/.Xmodmap"
 
-# Configure mouse and keyboard sensivity.
+# Configure mouse and keyboard sensivity, disable beeping.
 xset r rate 270 55
 xset m 2 60
-# Disable beep.
 xset b off
 
 # Load my X defaults.
