@@ -46,6 +46,8 @@
     default = tracking
 
 [alias]
+    unstage = reset HEAD
+
     tags = tag -l
     branches = branch -a
     remotes = remote -v
@@ -62,10 +64,9 @@
 
     a = add
     c = commit
-    ca = commit --all
-    cam = commit --amend
+    ca = commit --amend
     d = diff
     dc = diff --cached
     o = checkout
     s = status
-    unstage = reset HEAD
+    p = pull
