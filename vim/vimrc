@@ -168,7 +168,6 @@ let mapleader = ","
 let maplocalleader = "\\"
 set pastetoggle=<F12>
 
-
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -176,15 +175,11 @@ vnoremap k gk
 
 nnoremap / /\v
 
+nnoremap Y y$
+
 nnoremap H <C-w>h
 nnoremap L <C-w>l
 nnoremap K <C-w><C-w>
-nnoremap <left> <C-w>h
-nnoremap <right> <C-w>l
-nnoremap <up> <C-w>k
-nnoremap <down> <C-w>j
-
-nnoremap Y y$
 
 " - to toggle folds.
 nnoremap - za
