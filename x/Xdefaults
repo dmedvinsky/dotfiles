@@ -31,11 +31,30 @@ Rxvt.keysym.M-u:      perl:url-select:select_next
 Rxvt.keysym.M-Escape: perl:keyboard-select:activate
 Rxvt.keysym.M-s:      perl:keyboard-select:search
 
-
-Rxvt.font:             xft:Ubuntu Mono:pixelsize=14
-Rxvt.boldFont:         xft:Ubuntu Mono:pixelsize=14
-Rxvt.italicFont:       xft:Ubuntu Mono:pixelsize=14
-Rxvt.boldItalicFont:   xft:Ubuntu Mono:pixelsize=14
+Rxvt.font:              \
+                        xft:Monofur:pixelsize=13,\
+                        xft:Inconsolata-g:pixelsize=12,\
+                        xft:SourceCodePro-ExtraLight:pixelsize=12,\
+                        xft:Ubuntu Mono:pixelsize=12,\
+                        -*-ubuntu mono-medium-r-normal-*-*-*-*-*-*-*-*-*
+Rxvt.boldFont:          \
+                        xft:Monofur:pixelsize=13,\
+                        xft:SourceCodePro-Bold:pixelsize=12,\
+                        xft:Inconsolata-g:pixelsize=12,\
+                        xft:Ubuntu Mono:pixelsize=12,\
+                        -*-ubuntu mono-bold-r-normal-*-*-*-*-*-*-*-*-*
+Rxvt.italicFont:        \
+                        xft:Monofur:pixelsize=13,\
+                        xft:SourceCodePro-Light:pixelsize=12,\
+                        xft:Inconsolata-g:pixelsize=12,\
+                        xft:Ubuntu Mono:pixelsize=12,\
+                        -*-ubuntu mono-medium-i-normal-*-*-*-*-*-*-*-*-*
+Rxvt.boldItalicFont:    \
+                        xft:Monofur:pixelsize=13,\
+                        xft:SourceCodePro-Semibold:pixelsize=12,\
+                        xft:Inconsolata-g:pixelsize=12,\
+                        xft:Ubuntu Mono:pixelsize=12,\
+                        -*-ubuntu mono-bold-i-normal-*-*-*-*-*-*-*-*-*
 ! }}}
 
 Rxvt.colorUL              : #6090ff
