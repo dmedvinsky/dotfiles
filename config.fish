@@ -214,7 +214,7 @@ end
 
 # Local Settings
 if test -s $HOME/.local/config.fish
-    source $HOME/.local/config.fish
+    . $HOME/.local/config.fish
 end
 
 set -gx HOSTNAME (hostname)
