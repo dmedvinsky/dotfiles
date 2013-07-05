@@ -85,17 +85,12 @@ myManageHook = composeAll
   , className =? "stalonetray"    --> doIgnore
   , className =? "Workrave"       --> doIgnore
 
-  , className =? "Firefox"        --> doShift "2"
   , className =? "Firefox" <&&> isInfixOf "Downloads" <$> title
                                   --> doCenterFloat
-  , className =? "Firefox" <&&> isInfixOf "Firebug" <$> title
-                                  --> doShift "-"
-                                  <+> doFullFloat
 
-  , className =? "Skype"          --> doShift "=" <+> doFloat
+  , className =? "Skype"          --> doShift "="
   , className =? "Keepassx"       --> doFloat
   , className =? "feh"            --> doFullFloat
-  , className =? "MPlayer"        --> doCenterFloat
 
   -- , currentWs =? "="              --> keepMaster ("dmitry.medvinsky" `isInfixOf`) title
   ]
@@ -196,18 +191,21 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [
     -- keycode 180 (keysym 0x1008ff18, XF86HomePage)
       ((0, 0x1008ff18), spawn "firefox")
-    , ((modMask, 0x1008ff18), spawn "luakit")
     -- keycode 225 (keysym 0x1008ff1b, XF86Search)
-    -- , ((0, 0x1008ff1b), spawn "")
+    , ((0, 0x1008ff1b), spawn "keepassx")
     -- keycode 163 (keysym 0x1008ff19, XF86Mail)
-    , ((0, 0x1008ff19), spawn $ termCmd "mutt")
+    , ((0, 0x1008ff19), spawn "skype")
+    -- keycode 148 (keysym 0x1008ff1d, XF86Calculator)
+    -- , ((0, 0x1008ff1d), spawn "")
+    -- keycode 164 (keysym 0x1008ff30, XF86Favorites)
+    , ((0, 0x1008FF30), spawn $ myBin "toggle_tray.sh")
 
     -- keycode 192 (keysym 0x1008ff45, XF86Launch5)
-    , ((0, 0x1008FF45), spawn "skype")
+    -- , ((0, 0x1008FF45), spawn "")
     -- keycode 193 (keysym 0x1008ff46, XF86Launch6)
-    , ((0, 0x1008FF46), spawn $ termCmdWithName (myBin "mcabber") "jabber")
+    -- , ((0, 0x1008FF46), spawn "")
     -- keycode 194 (keysym 0x1008ff47, XF86Launch7)
-    , ((0, 0x1008FF47), spawn "keepassx")
+    -- , ((0, 0x1008FF47), spawn "")
     -- keycode 195 (keysym 0x1008ff48, XF86Launch8)
     -- , ((0, 0x1008FF48), spawn "")
     -- keycode 196 (keysym 0x1008ff49, XF86Launch9)
@@ -217,23 +215,14 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0, 0x1008ff12), spawn "amixer -q set Master toggle")
     -- (keysym 0x1008ff11, XF86AudioLowerVolume)
     , ((0, 0x1008ff11), spawn "amixer -q set Master 1- unmute")
+    , ((modMask, 0x1008ff11), spawn "cmus-remote --prev")
     -- (keysym 0x1008ff13, XF86AudioRaiseVolume)
     , ((0, 0x1008ff13), spawn "amixer -q set Master 1+ unmute")
+    , ((modMask, 0x1008ff13), spawn "cmus-remote --next")
     -- keycode 172 (keysym 0x1008ff14, XF86AudioPlay)
     , ((0, 0x1008ff14), spawn "cmus-remote --pause")
-    , ((modMask, 0x1008ff11), spawn "cmus-remote --prev")
-    , ((modMask, 0x1008ff13), spawn "cmus-remote --next")
-    , ((ctrlMask, 0x1008ff14), spawn "cmus-remote --stop")
-    , ((modMask, 0x1008ff14), spawn $ termCmd $ "cmus")
 
-    -- keycode 148 (keysym 0x1008ff1d, XF86Calculator)
-    -- , ((0, 0x1008ff1d), spawn "")
-
-    -- keycode 164 (keysym 0x1008ff30, XF86Favorites)
-    , ((0, 0x1008FF30), spawn $ myBin "toggle_tray.sh")
-
-    , ((modMask,               xK_F12     ), spawn $ myBin "lock")
-    , ((modMask .|. ctrlMask,  xK_F12     ), spawn $ myBin "lock" ++ " 1")
+    , ((modMask, xK_F12), spawn $ myBin "lock")
 
     -- control mouse from keyboard
     , ((modMask             ,  xK_Left    ), spawn $ "xdotool mousemove_relative -- -30 0")
