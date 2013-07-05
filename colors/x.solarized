@@ -52,7 +52,7 @@
 *cursorColor: S_base1
 *pointerColorBackground:S_base01
 *pointerColorForeground:S_base1
-*scrollColor: S_base0
+*scrollColor: S_base02
 
 !! black dark/light
 *color0: S_base02
