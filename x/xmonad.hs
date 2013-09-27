@@ -37,7 +37,7 @@ main = do
 
 -- Settings {{{
 myTerminal           = "urxvtc"
-myBar                = "xmobar ~/.xmonad/xmobarrc"
+myBar                = "xmobar ~/.config/xmobar/xmobarrc"
 myModMask            = mod4Mask
 myFocusFollowsMouse  = True
 myBorderWidth        = 1
