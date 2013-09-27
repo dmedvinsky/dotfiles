@@ -124,7 +124,7 @@ macro index <esc>F     ":set date_format = \"%Y-%m-%d %H:%M:%S %z\"<enter>"     
 macro index \Cr        "<tag-prefix><clear-flag>N"                                  "mark tagged messages as read"
 macro index \CR        "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 macro index gi         "<change-folder>!<enter>"                                    "go to Inbox"
-macro index gs         "<change-folder>=sent<enter>"                                "go to Sent Mail"
+macro index gs         "<change-folder>=elegion/sent<enter>"                        "go to Sent Mail"
 
 macro index O          "<shell-escape>offlineimap<enter>"                           "run offlineimap to sync all mail"
 macro index o          "<shell-escape>offlineimap -qf INBOX<enter>"                 "run offlineimap to sync inbox"
@@ -132,5 +132,5 @@ macro index o          "<shell-escape>offlineimap -qf INBOX<enter>"             
 
 source $alias_file
 source $my_cfgdir/muttrc.gpg
-source $my_cfgdir/muttrc.colors.badwolf
+source $my_cfgdir/muttrc.colors
 source $my_cfgdir/muttrc.accounts

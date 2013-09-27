@@ -1,5 +1,5 @@
 set from      = "dmitry.medvinsky@e-legion.com"
-set sendmail  = "msmtp -a elegion"
+set sendmail  = "msmtp --file=$HOME/.config/msmtprc --account=elegion"
 
 set folder    = "~/.mail/elegion"
     set spoolfile = "=INBOX"
