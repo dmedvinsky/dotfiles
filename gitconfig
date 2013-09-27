@@ -31,7 +31,7 @@
     cmd = "vim -d -f $LOCAL $REMOTE"
 [mergetool "splice"]
     cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-    trustExitCode = true
+    trustExitCode = false
 [difftool]
     prompt = false
 [mergetool]
@@ -68,5 +68,6 @@
     d = diff
     dc = diff --cached
     o = checkout
+    ob = checkout -b
     s = status
     p = pull
