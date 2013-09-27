@@ -25,7 +25,7 @@ nametrans = lambda folder: {'drafts': 'Drafts',
 [Repository RemoteElegion]
 type = IMAP
 ssl = yes
-cert_fingerprint = 1b4eef889cf9a0831896f9f5a8760d6f1edc9d36
+cert_fingerprint = 4b4f4b14b6d0d84cbad805417501ce0fac523530
 remotehost = mail.e-legion.com
 remoteuser = dmitry.medvinsky
 idlefolders = ['INBOX']
