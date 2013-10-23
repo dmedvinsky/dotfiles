@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-cd $HOME/.mail && exec /usr/bin/mutt -F $HOME/.config/mutt/muttrc $@
