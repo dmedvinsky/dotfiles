@@ -37,9 +37,12 @@ set -g -x __fish_git_prompt_color_dirtystate red
 
 # Various programs
 set -g -x GREP_OPTIONS '--color=auto'
+set -g -x LESSHISTFILE "/dev/null"
+set -g -x RXVT_SOCKET "$HOME/.cache/urxvtd.sock"
+set -g -x CMUS_HOME "$HOME/.config/cmus"
+set -g -x VIFM "$HOME/.config/vifm"
 set -g -x PENTADACTYL_RUNTIME "$HOME/.config/pentadactyl"
 set -g -x VIMPERATOR_RUNTIME "$HOME/.config/vimperator"
-set -g -x CMUS_HOME "$HOME/.config/cmus"
 set -g -x GIMP2_DIRECTORY "$HOME/.config/gimp"
 
 # Python
