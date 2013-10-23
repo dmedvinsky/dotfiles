@@ -1,4 +1,0 @@
-include ".local/share/themes/absolute/gtk-2.0/gtkrc"
-gtk-theme-name = "absolute"
-gtk-font-name = "Ubuntu 10"
-gtk-icon-theme-name = "Tango"

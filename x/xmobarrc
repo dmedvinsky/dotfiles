@@ -10,7 +10,7 @@ Config {
   , borderColor  = "black"
   , sepChar      = "%"
   , alignSep     = "}{"
-  , template     = "%StdinReader% }{ %kbd% <fc=white>|</fc> %cpu% %multicpu% <fc=white>|</fc> %memory% <fc=white>|</fc> %uptime% <fc=white>|</fc> %eth0% <fc=white>|</fc> <action=gsimplecal><fc=orange>%date%</fc></action>"
+  , template     = "%StdinReader% }{ %kbd% <fc=white>|</fc> %cpu% %multicpu% <fc=white>|</fc> %memory% <fc=white>|</fc> %uptime% <fc=white>|</fc> %eno1% <fc=white>|</fc> <action=gsimplecal><fc=orange>%date%</fc></action>"
   , commands     = [
         Run StdinReader
       , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
@@ -29,7 +29,7 @@ Config {
       , Run Memory ["-t", "Mem <usedratio>%",
                     "-p", "2"] 10
       , Run Uptime [] 300
-      , Run Network "eth0" ["-t", "<dev> <rx>↓<tx>↑",
+      , Run Network "eno1" ["-t", "<dev> <rx>↓<tx>↑",
                             "-m", "3",
                             "-L", "1",
                             "-H", "32",

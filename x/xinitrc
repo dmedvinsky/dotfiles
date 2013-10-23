@@ -15,14 +15,13 @@ xset m 2 60
 xset b off
 
 # Load my X defaults.
-xrdb -DSOLARIZED_LIGHT -merge "${HOME}/.Xdefaults"
+xrdb -merge "${HOME}/.Xdefaults"
 
 # Make GTK and QT apps use of Compose key.
 export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
 # Themes and stuff.
-export GTK2_RC_FILES="${HOME}/.gtkrc-2.0"
-export OOO_FORCE_DESKTOP=gnome
+export GTK2_RC_FILES="${HOME}/.config/gtk-2.0/gtkrc"
 
 # Set cursor and wallpaper for the root window.
 xsetroot -cursor_name left_ptr &
