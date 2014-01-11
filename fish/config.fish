@@ -2,23 +2,18 @@
 
 # Environment variables {{{
 # Path
-set PATH "/bin"
-set PATH "/sbin" $PATH
-set PATH "/usr/bin" $PATH
-set PATH "/usr/sbin" $PATH
+test -d "/bin"; and set PATH "/bin"
+test -d "/sbin"; and set PATH "/sbin" $PATH
+test -d "/usr/bin"; and set PATH "/usr/bin" $PATH
+test -d "/usr/sbin"; and set PATH "/usr/sbin" $PATH
 test -d "/usr/local/bin"; and set PATH "/usr/local/bin" $PATH
 test -d "/usr/local/sbin"; and set PATH "/usr/local/sbin" $PATH
-test -d "/usr/bin/vendor_perl"; and set PATH "/usr/bin/vendor_perl" $PATH
 test -d "$HOME/.android/sdk/tools"; and set PATH "$HOME/.android/sdk/tools" $PATH
 test -d "$HOME/.android/sdk/platform-tools"; and set PATH "$HOME/.android/sdk/platform-tools" $PATH
 test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
 test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
 test -d "$HOME/.rbenv/shims"; and set PATH "$HOME/.rbenv/shims" $PATH
-test -d "/opt/vagrant"; and set PATH "/opt/vagrant/bin" $PATH
-if which ruby >/dev/null ^/dev/null
-    set -l gemdir (ruby -rubygems -e "puts Gem.user_dir")/bin
-    test -n "$gemdir" -a -d "$gemdir"; and set PATH "$gemdir" $PATH
-end
+test -d "/opt/vagrant/bin"; and set PATH "/opt/vagrant/bin" $PATH
 test -d "$HOME/bin"; and set PATH "$HOME/bin" $PATH
 
 # Globally recognised variables
@@ -44,14 +39,16 @@ set -g -x VIFM "$HOME/.config/vifm"
 set -g -x PENTADACTYL_RUNTIME "$HOME/.config/pentadactyl"
 set -g -x VIMPERATOR_RUNTIME "$HOME/.config/vimperator"
 set -g -x GIMP2_DIRECTORY "$HOME/.config/gimp"
+set -g -x PSQLRC "$HOME/.config/psql/psqlrc"
 
 # Python
-set -g -x PIP_DOWNLOAD_CACHE "$HOME/.pip/cache"
+set -g -x PIP_DOWNLOAD_CACHE "$HOME/.cache/pip"
 set -g -x VIRTUAL_ENV_DISABLE_PROMPT true
 test -r "$HOME/.pythonrc.py"; and set -g -x PYTHONSTARTUP "$HOME/.pythonrc.py"
 
 # Ruby
 set -g -x RUBYOPT "-Ku"
+set -g -x GEM_SPEC "$HOME/.cache/gem"
 
 # }}}
 
