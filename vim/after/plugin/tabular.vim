@@ -1,2 +1,4 @@
-AddTabularPattern eq /=
-AddTabularPattern colon /:\zs
+if exists('AddTabularPattern')
+    AddTabularPattern eq /=
+    AddTabularPattern colon /:\zs
+end
