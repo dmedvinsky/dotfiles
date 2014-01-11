@@ -1,8 +1,8 @@
 function __prompt_char
-    if git root >/dev/null 2>&1
+    if [ which git >/dev/null 2>&1 -a git root >/dev/null 2>&1 ]
        printf '±'
     else
-        if hg root >/dev/null 2>&1
+        if [ which hg >/dev/null 2>&1 -a hg root >/dev/null 2>&1 ]
             printf '☿'
         else
             printf '°'
