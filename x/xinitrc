@@ -29,7 +29,7 @@ xsetroot -cursor_name left_ptr &
 
 
 check_process() {
-    if [ -x "`which $1 2>/dev/null`" -a -z "`pidof $1`" ]; then
+    if [ -x "`which $1 2>/dev/null`" -a -z "`pgrep $1`" ]; then
         return 0
     else
         return 1

@@ -33,30 +33,31 @@ Rxvt.keysym.M-s:      perl:keyboard-select:search
 
 Rxvt.font:              \
                         xft:Monofur:pixelsize=13,\
-                        xft:Inconsolata-g:pixelsize=12,\
-                        xft:SourceCodePro-ExtraLight:pixelsize=12,\
+                        xft:Inconsolata-g:pixelsize=15,\
+                        xft:Source Code Pro Light:pixelsize=13,\
                         xft:Ubuntu Mono:pixelsize=12,\
                         -*-ubuntu mono-medium-r-normal-*-*-*-*-*-*-*-*-*
 Rxvt.boldFont:          \
                         xft:Monofur:pixelsize=13,\
-                        xft:SourceCodePro-Bold:pixelsize=12,\
-                        xft:Inconsolata-g:pixelsize=12,\
+                        xft:Inconsolata-g:pixelsize=15,\
+                        xft:Source Code Pro Bold:pixelsize=13,\
                         xft:Ubuntu Mono:pixelsize=12,\
                         -*-ubuntu mono-bold-r-normal-*-*-*-*-*-*-*-*-*
 Rxvt.italicFont:        \
                         xft:Monofur:pixelsize=13,\
-                        xft:SourceCodePro-Light:pixelsize=12,\
-                        xft:Inconsolata-g:pixelsize=12,\
+                        xft:Inconsolata-g:pixelsize=15,\
+                        xft:Source Code Pro Light:pixelsize=13,\
                         xft:Ubuntu Mono:pixelsize=12,\
                         -*-ubuntu mono-medium-i-normal-*-*-*-*-*-*-*-*-*
 Rxvt.boldItalicFont:    \
                         xft:Monofur:pixelsize=13,\
-                        xft:SourceCodePro-Semibold:pixelsize=12,\
-                        xft:Inconsolata-g:pixelsize=12,\
+                        xft:Inconsolata-g:pixelsize=15,\
+                        xft:Source Code Pro Semibold:pixelsize=13,\
                         xft:Ubuntu Mono:pixelsize=12,\
                         -*-ubuntu mono-bold-i-normal-*-*-*-*-*-*-*-*-*
 ! }}}
 
+Rxvt*scrollColor          : #000000
 Rxvt.colorUL              : #6090ff
 #include "/home/dmedvinsky/.Xdefaults.colors"
 
