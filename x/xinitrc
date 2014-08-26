@@ -8,37 +8,33 @@ fi
 
 # Custom keyboard hacks.
 [ -f "${HOME}/.Xmodmap" ] && xmodmap "${HOME}/.Xmodmap"
+xcape -e 'Shift_L=parenleft;Shift_R=parenright;Caps_Lock=Escape'
 
 # Configure mouse and keyboard sensivity, disable beeping.
 xset r rate 270 55
 xset m 2 60
 xset b off
+# Fonts path.
+xset +fp /usr/share/fonts/local
 
 # Load my X defaults.
 xrdb -merge "${HOME}/.Xdefaults"
-
-# Make GTK and QT apps use of Compose key.
-export GTK_IM_MODULE=xim
-export QT_IM_MODULE=xim
-# Themes and stuff.
-export GTK2_RC_FILES="${HOME}/.config/gtk-2.0/gtkrc"
 
 # Set cursor and wallpaper for the root window.
 xsetroot -cursor_name left_ptr &
 [ -f "${HOME}/.fehbg" ] && eval $(cat ~/.fehbg) &
 
+# GTK and QT settings.
+export GTK_IM_MODULE=xim
+export QT_IM_MODULE=xim
+export GTK2_RC_FILES="${HOME}/.config/gtk-2.0/gtkrc"
 
-check_process() {
-    if [ -x "`which $1 2>/dev/null`" -a -z "`pgrep $1`" ]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-# Startup apps.
-check_process urxvtd && urxvtd -q -o -f
-check_process xcape && xcape -e 'Shift_L=parenleft;Shift_R=parenright;Caps_Lock=Escape'
+# X apps settings.
+export RXVT_SOCKET="$HOME/.cache/urxvtd.sock"
+export PENTADACTYL_RUNTIME="$HOME/.config/pentadactyl"
+export VIMPERATOR_RUNTIME="$HOME/.config/vimperator"
+export VIMPERATOR_INIT=":source $HOME/.config/vimperator/vimperatorrc"
+export GIMP2_DIRECTORY="$HOME/.config/gimp"
 
 # Source local settings before running window manager.
 [ -f "${HOME}/.local/xinitrc" ] && . "${HOME}/.local/xinitrc"
