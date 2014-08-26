@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
-# DISPLAY=:0.0 xscreensaver-command -lock
-DISPLAY=:0.0 i3lock
+export DISPLAY=:0.0
+mpctl pause
+i3lock
