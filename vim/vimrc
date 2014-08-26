@@ -1,80 +1,83 @@
-set nocompatible
 filetype off
-
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Bundles {{{1
-Bundle 'gmarik/vundle'
+" Plugins {{{1
+Plugin 'gmarik/vundle'
 
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-vinegar'
-Bundle 'justinmk/vim-sneak'
-Bundle 'scrooloose/syntastic'
-Bundle 'PeterRincker/vim-argumentative'
-Bundle 'godlygeek/tabular'
-Bundle 'ervandew/supertab'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rsi'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'ervandew/supertab'
+Plugin 'scrooloose/syntastic'
+Plugin 'jeetsukumaran/vim-filebeagle'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'tommcdo/vim-lion'
+Plugin 'justinmk/vim-sneak'
+Plugin 'majutsushi/tagbar'
 
-Bundle 'kana/vim-textobj-user'
-Bundle 'kana/vim-textobj-indent'
-Bundle 'kana/vim-textobj-diff'
-Bundle 'kana/vim-operator-user'
-Bundle 'kana/vim-operator-replace'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'Julian/vim-textobj-variable-segment'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kana/vim-operator-user'
+Plugin 'kana/vim-textobj-indent'
+Plugin 'kana/vim-textobj-diff'
+Plugin 'kana/vim-operator-replace'
+Plugin 'wellle/targets.vim'
+Plugin 'tommcdo/vim-ninja-feet'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'Julian/vim-textobj-variable-segment'
+Plugin 'beloglazov/vim-textobj-quotes'
 
-Bundle 'tpope/vim-git'
-Bundle 'aliva/vim-fish'
-Bundle 'othree/html5.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'vim-scripts/VimClojure'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'hynek/vim-python-pep8-indent'
+Plugin 'tpope/vim-git'
+Plugin 'aliva/vim-fish'
+Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'vim-scripts/VimClojure'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'slim-template/vim-slim'
 
-Bundle 'sjl/badwolf'
-Bundle 'sickill/vim-monokai'
+Plugin 'sjl/badwolf'
+Plugin 'sickill/vim-monokai'
 " }}}1
 
 " Options {{{1
-filetype plugin indent on
-
-set shell=/bin/bash
-
 set cpoptions+=J
-
-set novisualbell t_vb=
-set title
-set t_Co=256
-set ttyfast
-set lazyredraw        " Do not redraw buffer then executing macros etc.
-set mousehide
 
 set termencoding=utf-8
 set fileencodings=utf-8,windows-1251,iso-8859-15,koi8-r
-set encoding=utf8
+set encoding=utf-8
 
+set novisualbell t_vb=
+set title
+set ttyfast
+set lazyredraw
+set mousehide
 set hidden
 set virtualedit=all
-set backspace=indent,eol,start
 set nojoinspaces
+set formatoptions-=t  " Do not auto-wrap text using textwidth
+set formatoptions+=c  " Auto-wrap comments using textwidth
+set formatoptions+=r  " Insert comment leader on Enter in insert mode
 set formatoptions-=o  " Do not continue comments when pressing o/O
+set formatoptions+=q  " Allow gq on comments
+set formatoptions+=l  " Don't break long lines if it was long when entering insert mode
+set formatoptions+=1  " Don't break after 1-letter word, break before it
+set formatoptions+=j  " Remove comment leader wehn joining lines
 set shellslash
-set autoread
 set autowrite
 
 set scrolljump=1
-set scrolloff=7
+set scrolloff=5
 set sidescrolloff=10
 set sidescroll=10
 
-set incsearch
 set hlsearch
 set wrapscan
 set ignorecase
@@ -82,15 +85,13 @@ set smartcase
 set noinfercase
 set gdefault
 
-set autoindent
 set smartindent
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set expandtab
 
 set nowrap
-set textwidth=79
 set showmatch
 set list
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -105,7 +106,6 @@ endif
 set foldmethod=indent
 set foldlevel=20
 
-set wildmenu
 set wildcharm=<TAB>
 set wildmode=list:longest
 
@@ -136,9 +136,8 @@ set splitright
 set splitbelow
 
 set fillchars=""  " Get rid of the silly characters in window separators
-set showcmd       " Show partial command (or visual selection size) in cmd line
 set cmdheight=2
-set laststatus=2
+set cmdwinheight=3
 
 set statusline=%*\ %f\ %<
 set statusline+=%1*%m%*
@@ -151,7 +150,7 @@ set statusline+=\ %03vx%3*%03l%*/%03L
 set statusline+=%*
 
 set numberwidth=3
-set nonumber
+set number
 if exists('&relativenumber')
     set norelativenumber
 endif
@@ -177,27 +176,29 @@ if has('gui_running') " {{{2
     set guifont=Ubuntu\ Mono
 endif " }}}2
 
-syntax on
 set synmaxcol=512
 " }}}1
 
 " Mappings {{{1
-let mapleader = ","
-let maplocalleader = "\\"
+let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 set pastetoggle=<F12>
 
+" Navigate by screen lines, not real lines.
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+" Very magic search by default.
 nnoremap / /\v
 
+" Y behaves more like D, i.e. yanks to the end of line.
 nnoremap Y y$
 
-nnoremap H <C-w><C-h>
-nnoremap L <C-w><C-l>
-nnoremap K <C-w><C-w>
+" Use cmdwin instead of cmdline.
+" nnoremap : q:
+" nnoremap Q :
 
 " Center screen on search match
 nnoremap n nzzzv
@@ -209,41 +210,42 @@ nnoremap <leader>v V`]
 " Paste in visual mode without losing register content
 xnoremap <expr> p v:register=='"'?'pgvy':'p'
 
-" Allow command line editing like emacs
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-cnoremap <C-B> <Left>
-cnoremap <C-F> <Right>
-cnoremap <C-N> <Down>
-cnoremap <C-P> <Up>
-
 " Write as sudo
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Toggle wrap
-nnoremap <leader>iw :set invwrap<CR>:set wrap?<CR>
-" Toggle line numbers
-nnoremap <leader>in :set invnumber<CR>:set number?<CR>
-" Toggle spell checking
-nnoremap <leader>is :set invspell<CR>:set spell?<CR>
-
-" Disable search highlight
-nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 " Highlight all instances of the current word under the cursor
 nnoremap <silent> <leader>hh :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<CR>
 
+" Quick vimrc editing.
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>rv :source $MYVIMRC<cr>
 
-" Plugins
-let g:ctrlp_map = '<leader>t'
+" Quicker window management.
+nnoremap <BS> <C-W>
+nnoremap <BS><BS> <C-W><C-W>
+
+nnoremap <leader>w :w<CR>
+
+" Good vacant mappings.
+nnoremap U <nop>
+nnoremap K <nop>
+nnoremap <Del> <nop>
+" nnoremap <CR> <nop>
+" nnoremap _ <nop>
+" nnoremap \| <nop>
+" }}}1
+
+" Plugins {{{1
+" vim-sneak
 let g:sneak#streak = 1
+
+" operator-replace
 map gr <Plug>(operator-replace)
 
-nnoremap <C-p> :CtrlPMRU<CR>
-
+" surround-vim
 nnoremap ys<space> ysl<space><space>
 
+" fugitive-vim
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -253,31 +255,24 @@ nnoremap <silent> <leader>gr :Gread<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
 nnoremap <silent> <leader>gg :Ggrep <C-r><C-w><CR>
 
-nnoremap <F6> :GundoToggle<CR>
-nnoremap <F7> :SyntasticCheck<CR>
+" tagbar
+nnoremap <leader>t :TagbarOpenAutoClose<CR>
 
-" }}}1
-
-" Plugins {{{1
-runtime macros/matchit.vim
-
-" Fugitive
-if has("autocmd")
-    augroup fugutiveAU
-        autocmd!
-        autocmd BufReadPost fugitive://* set bufhidden=delete
-        autocmd User fugitive
-          \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-          \     nnoremap <buffer> .. :edit %:h<CR> |
-          \ endif
-    augroup END
-endif
-
+" ctrl-p
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 if has('win32')
     let g:ctrlp_cache_dir = $TEMP.'/ctrlp'
 endif
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
+        \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
+    \ },
+    \ 'fallback': 'find %s -type f',
+    \ }
+let g:ctrlp_use_caching = 0
 
+" syntastic
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['java'] }
@@ -287,23 +282,15 @@ let g:syntastic_mode_map = { 'mode': 'active',
 if has("autocmd")
     augroup FTOptions " {{{2
         autocmd!
-        autocmd FileType vim setlocal foldmethod=marker
-
-        autocmd FileType sh setlocal foldmethod=marker
-        autocmd FileType zsh setlocal foldmethod=marker
-
-        autocmd FileType mail setlocal wrap
-        autocmd FileType gitcommit setlocal spell textwidth=72
-
-        autocmd FileType python setlocal sw=4 sts=4 ts=4 et nosmartindent
-        autocmd FileType ruby,eruby setlocal sw=2 sts=2 ts=2 et
-        autocmd FileType lisp setlocal commentstring=;;%s
-
-        autocmd FileType html,htmldjango,liquid setlocal sw=2 sts=2 ts=2 et tw=0
-        autocmd FileType yaml setlocal sw=2 sts=2 ts=2 et
-        autocmd FileType coffee,javascript setlocal sw=2 sts=2 ts=2 et
-
-        autocmd FileType css,less,scss setlocal sw=2 sts=2 ts=2 et tw=0
+        autocmd FileType vim setl fdm=marker sw=4 sts=4 ts=4
+        autocmd FileType mail setl wrap
+        autocmd FileType gitcommit setl spell
+        autocmd FileType python setl sw=4 sts=4 ts=4 et nosi
+        autocmd FileType haskell setl sw=4 sts=4 ts=4 et
+        autocmd FileType lisp setl commentstring=;;%s
+        autocmd FileType go setl sw=4 sts=4 ts=4 noet
+        autocmd FileType fish setl sw=4 sts=4 ts=4 et
+        autocmd FileType html,htmldjango,liquid setl
     augroup END " }}}2
 
     augroup Misc " {{{2
@@ -321,6 +308,17 @@ if has("autocmd")
         autocmd InsertLeave * match ExtraWhitespace /\s\+$/
         autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     augroup END " }}}2
+
+    augroup command_window
+        autocmd!
+        " Have <Ctrl-C> leave cmdline-window.
+        autocmd CmdwinEnter * nnoremap <buffer> <C-c> :q\|echo ""<cr>
+        autocmd CmdwinEnter * inoremap <buffer> <C-c> <esc>:q\|echo ""<cr>
+        " Start command line window in insert mode and no line numbers.
+        autocmd CmdwinEnter * startinsert
+        autocmd CmdwinEnter * setl nonumber
+        autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+    augroup END
 end
 " }}}1
 
@@ -336,60 +334,6 @@ endfunction
 
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-" }}}
-
-" Next and Last {{{
-
-" Motion for "next/last object". "Last" here means "previous", not "final".
-" Unfortunately the "p" motion was already taken for paragraphs.
-"
-" Next acts on the next object of the given type in the current line, last acts
-" on the previous object of the given type in the current line.
-"
-" Currently only works for (, [, {, b, r, B, ', and ".
-"
-" Some examples (C marks cursor positions, V means visually selected):
-"
-" din' -> delete in next single quotes foo = bar('spam')
-" C
-" foo = bar('')
-" C
-"
-" canb -> change around next parens foo = bar('spam')
-" C
-" foo = bar
-" C
-"
-" vil" -> select inside last double quotes print "hello ", name
-" C
-" print "hello ", name
-" VVVVVV
-
-onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-
-onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-
-function! s:NextTextObject(motion, dir)
-  let c = nr2char(getchar())
-
-  if c ==# "b"
-      let c = "("
-  elseif c ==# "B"
-      let c = "{"
-  elseif c ==# "r"
-      let c = "["
-  endif
-
-  exe "normal! ".a:dir.c."v".a:motion.c
-endfunction
-" }}}
-
 " Fix whitespace {{{
 highlight ExtraWhitespace ctermbg=darkred guibg=#382424
 
@@ -462,13 +406,14 @@ function! MylineMode()
 endfunction
 
 function! MylineUpdate(active)
+    let sl = ""
     if !a:active
-        let sl = '%* %f %< %1*%m%*'
+        let sl.= '%* %f %< %1*%m%*'
     else
-        let sl = '%2*%{MylineMode()}%3*'
-        let sl.= '%{strlen(fugitive#statusline()) > 0 ? " " : ""}'
-        let sl.= '%{matchstr(fugitive#statusline(), "(\\zs.*\\ze)")}'
-        let sl.= '%{strlen(fugitive#statusline()) > 0 ? " " : ""}'
+        " let sl.= '%2*%{MylineMode()}%3*'
+        " let sl.= '%{strlen(fugitive#statusline()) > 0 ? " " : ""}'
+        " let sl.= '%{matchstr(fugitive#statusline(), "(\\zs.*\\ze)")}'
+        " let sl.= '%{strlen(fugitive#statusline()) > 0 ? " " : ""}'
         let sl.= '%1*%m%*'
         let sl.= '%1*%r%*'
         let sl.= '%<%* %f'
