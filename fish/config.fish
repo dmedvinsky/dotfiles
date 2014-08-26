@@ -14,7 +14,9 @@ test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
 test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
 test -d "$HOME/.rbenv/shims"; and set PATH "$HOME/.rbenv/shims" $PATH
 test -d "/opt/vagrant/bin"; and set PATH "/opt/vagrant/bin" $PATH
-test -d "$HOME/bin"; and set PATH "$HOME/bin" $PATH
+test -d "$HOME/src/go/bin"; and set PATH "$HOME/src/go/bin" $PATH
+test -d "$HOME/.local/bin"; and set PATH "$HOME/.local/bin" $PATH
+test -d ".cabal-sandbox/bin"; and set PATH ".cabal-sandbox/bin" $PATH
 
 # Globally recognised variables
 set -g -x VISUAL vim
@@ -30,25 +32,29 @@ set -g -x __fish_git_prompt_showupstream auto,verbose
 set -g -x __fish_git_prompt_color magenta
 set -g -x __fish_git_prompt_color_dirtystate red
 
-# Various programs
-set -g -x GREP_OPTIONS '--color=auto'
-set -g -x LESSHISTFILE "/dev/null"
-set -g -x RXVT_SOCKET "$HOME/.cache/urxvtd.sock"
-set -g -x CMUS_HOME "$HOME/.config/cmus"
-set -g -x VIFM "$HOME/.config/vifm"
-set -g -x PENTADACTYL_RUNTIME "$HOME/.config/pentadactyl"
-set -g -x VIMPERATOR_RUNTIME "$HOME/.config/vimperator"
-set -g -x GIMP2_DIRECTORY "$HOME/.config/gimp"
-set -g -x PSQLRC "$HOME/.config/psql/psqlrc"
-
 # Python
 set -g -x PIP_DOWNLOAD_CACHE "$HOME/.cache/pip"
 set -g -x VIRTUAL_ENV_DISABLE_PROMPT true
 test -r "$HOME/.pythonrc.py"; and set -g -x PYTHONSTARTUP "$HOME/.pythonrc.py"
 
 # Ruby
-set -g -x RUBYOPT "-Ku"
 set -g -x GEM_SPEC "$HOME/.cache/gem"
+
+# Go
+set -g -x GOPATH "$HOME/src/go"
+
+# Various programs
+set -g -x GREP_OPTIONS '--color=auto'
+set -g -x LESSHISTFILE "/dev/null"
+set -g -x VIFM "$HOME/.config/vifm"
+set -g -x PSQLRC "$HOME/.config/psql/psqlrc"
+set -g -x HTTPIE_CONFIG_DIR "$HOME/.config/httpie"
+# set -g -x CMUS_HOME "$HOME/.config/cmus"
+# set -g -x RXVT_SOCKET "$HOME/.cache/urxvtd.sock"
+# set -g -x PENTADACTYL_RUNTIME "$HOME/.config/pentadactyl"
+# set -g -x VIMPERATOR_RUNTIME "$HOME/.config/vimperator"
+# set -g -x VIMPERATOR_INIT ":source $HOME/.config/vimperator/vimperatorrc"
+# set -g -x GIMP2_DIRECTORY "$HOME/.config/gimp"
 
 # }}}
 
@@ -63,7 +69,6 @@ function ...; cd ../..; end
 function ....; cd ../../..; end
 function cd..; cd ..; end
 
-function md; mkdir -p $argv; end
 function less; command less -R $argv; end
 
 # Directories listing
@@ -83,25 +88,18 @@ else
     function l;  ll $argv; end
 end
 
+function fm; vifm . .; end
+
 # Systemd
 if which systemctl >/dev/null ^/dev/null
     function start;   sudo systemctl start $argv; end
     function stop;    sudo systemctl stop $argv; end
     function restart; sudo systemctl restart $argv; end
+    function reboot;  sudo systemctl reboot $argv; end
 end
 # }}}
 
 # Local Settings
 if test -s $HOME/.local/config.fish
     . $HOME/.local/config.fish
-end
-
-set -gx HOSTNAME (hostname)
-if status --is-interactive
-    if which keychain >/dev/null 2>&1
-        set -lx KEYCHAIN_DIR "$HOME/.cache/keychain"
-        keychain --agents ssh --dir "$KEYCHAIN_DIR" --noask --nocolor --nogui --quick --quiet --timeout 30
-        [ -e "$KEYCHAIN_DIR/$HOSTNAME-fish" ]; and . "$KEYCHAIN_DIR/$HOSTNAME-fish"
-        [ -e "$KEYCHAIN_DIR/$HOSTNAME-fish-gpg" ]; and . "$KEYCHAIN_DIR/$HOSTNAME-fish-gpg"
-    end
 end
