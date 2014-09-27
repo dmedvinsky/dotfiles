@@ -41,54 +41,11 @@ Rxvt.boldFont:          \
                         -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*,\
                         -*-ubuntu mono-bold-r-normal-*-*-*-*-*-*-*-*-*,\
                         xft:Monospace Bold:pixelsize=14
-/* Rxvt.italicFont:        \ */
-/*                         xft:Luculent-Italic:pixelsize=14,\ */
-/*                         xft:Monofur:pixelsize=13,\ */
-/*                         xft:Consolas Italic:pixelsize=14,\ */
-/*                         xft:Inconsolata-g:pixelsize=15,\ */
-/*                         xft:Ubuntu Mono Italic:pixelsize=14,\ */
-/*                         -*-ubuntu mono-medium-i-normal-*-*-*-*-*-*-*-*-* */
-/* Rxvt.boldItalicFont:    \ */
-/*                         xft:Luculent-BoldItalic:pixelsize=14,\ */
-/*                         xft:Monofur:pixelsize=13,\ */
-/*                         xft:Consolas Bold Italic:pixelsize=14,\ */
-/*                         xft:Inconsolata-g:pixelsize=15,\ */
-/*                         xft:Ubuntu Mono Bold Italic:pixelsize=14,\ */
-/*                         -*-ubuntu mono-bold-i-normal-*-*-*-*-*-*-*-*-* */
-! }}}
 
 Rxvt*scrollColor          : #000000
 Rxvt.colorUL              : #6090ff
-#include "/home/dmedvinsky/.Xdefaults.colors"
-
-
-! xscreensaver {{{
-xscreensaver.Dialog.headingFont            : -*-clean-bold-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont               : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont              : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont              : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont             : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont               : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont             : -*-clean-medium-r-*-*-12-*-*-*-*-*-*-*
-!general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground             : #ffffff
-xscreensaver.Dialog.background             : #111111
-xscreensaver.Dialog.topShadowColor         : #111111
-xscreensaver.Dialog.bottomShadowColor      : #111111
-xscreensaver.Dialog.Button.foreground      : #666666
-xscreensaver.Dialog.Button.background      : #ffffff
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground        : #666666
-xscreensaver.Dialog.text.background        : #ffffff
-xscreensaver.Dialog.internalBorderWidth    : 24
-xscreensaver.Dialog.borderWidth            : 20
-xscreensaver.Dialog.shadowThickness        : 2
-!timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground : #ff0000
-xscreensaver.passwd.thermometer.background : #000000
-xscreensaver.passwd.thermometer.width      : 8
-xscreensaver.dateFormat                    : %H:%M %a %d %b %Y
 ! }}}
+#include "/home/dmedvinsky/.config/Xcolors"
 
 
 ! xautolock {{{

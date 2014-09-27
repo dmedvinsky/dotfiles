@@ -18,7 +18,7 @@ xset b off
 xset +fp /usr/share/fonts/local
 
 # Load my X defaults.
-xrdb -merge "${HOME}/.Xdefaults"
+xrdb -merge "${HOME}/.config/Xresources"
 
 # Set cursor and wallpaper for the root window.
 xsetroot -cursor_name left_ptr &
@@ -31,6 +31,7 @@ export GTK2_RC_FILES="${HOME}/.config/gtk-2.0/gtkrc"
 
 # X apps settings.
 export RXVT_SOCKET="$HOME/.cache/urxvtd.sock"
+export XCOMPOSEFILE="$HOME/.config/XCompose"
 export PENTADACTYL_RUNTIME="$HOME/.config/pentadactyl"
 export VIMPERATOR_RUNTIME="$HOME/.config/vimperator"
 export VIMPERATOR_INIT=":source $HOME/.config/vimperator/vimperatorrc"
