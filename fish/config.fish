@@ -13,6 +13,8 @@ test -d "$HOME/.android/sdk/platform-tools"; and set PATH "$HOME/.android/sdk/pl
 test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
 test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
 test -d "$HOME/.rbenv/shims"; and set PATH "$HOME/.rbenv/shims" $PATH
+test -d "$HOME/.pyenv/bin"; and set -x PATH "$HOME/.pyenv/bin" $PATH
+test -d "$HOME/.pyenv/shums"; and set -x PATH "$HOME/.pyenv/shims" $PATH
 test -d "/opt/vagrant/bin"; and set PATH "/opt/vagrant/bin" $PATH
 test -d "$HOME/src/go/bin"; and set PATH "$HOME/src/go/bin" $PATH
 test -d "$HOME/.local/bin"; and set PATH "$HOME/.local/bin" $PATH
@@ -35,7 +37,7 @@ set -g -x __fish_git_prompt_color_dirtystate red
 # Python
 set -g -x PIP_DOWNLOAD_CACHE "$HOME/.cache/pip"
 set -g -x VIRTUAL_ENV_DISABLE_PROMPT true
-test -r "$HOME/.pythonrc.py"; and set -g -x PYTHONSTARTUP "$HOME/.pythonrc.py"
+test -r "$HOME/.config/pythonrc.py"; and set -g -x PYTHONSTARTUP "$HOME/.config/pythonrc.py"
 
 # Ruby
 set -g -x GEM_SPEC "$HOME/.cache/gem"
@@ -102,4 +104,11 @@ end
 # Local Settings
 if test -s $HOME/.local/config.fish
     . $HOME/.local/config.fish
+end
+
+if status --is-interactive
+    if which pyenv >/dev/null ^/dev/null
+        . (pyenv init - | psub)
+        . (pyenv virtualenv-init - | psub)
+    end
 end
