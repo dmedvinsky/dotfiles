@@ -2,10 +2,13 @@ filetype off
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
+
 " Plugins {{{1
 Plugin 'gmarik/vundle'
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
@@ -13,13 +16,16 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rsi'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'ervandew/supertab'
+Plugin 'ajh17/VimCompletesMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'jeetsukumaran/vim-filebeagle'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'tommcdo/vim-lion'
 Plugin 'justinmk/vim-sneak'
 Plugin 'majutsushi/tagbar'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'joom/latex-unicoder.vim'
+Plugin 'idanarye/vim-merginal'
 
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-operator-user'
@@ -31,6 +37,8 @@ Plugin 'tommcdo/vim-ninja-feet'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'Julian/vim-textobj-variable-segment'
 Plugin 'beloglazov/vim-textobj-quotes'
+Plugin 'jeetsukumaran/vim-indentwise'
+Plugin 'gcmt/wildfire.vim'
 
 Plugin 'tpope/vim-git'
 Plugin 'aliva/vim-fish'
@@ -45,6 +53,44 @@ Plugin 'slim-template/vim-slim'
 
 Plugin 'sjl/badwolf'
 Plugin 'sickill/vim-monokai'
+
+let g:sneak#streak = 1
+
+map gr <Plug>(operator-replace)
+
+nnoremap ys<space> ysl<space><space>
+
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gr :Gread<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
+nnoremap <silent> <leader>gg :Ggrep <C-r><C-w><CR>
+
+nnoremap <leader>t :TagbarOpenAutoClose<CR>
+
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+if has('win32')
+    let g:ctrlp_cache_dir = $TEMP.'/ctrlp'
+endif
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
+        \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
+    \ },
+    \ 'fallback': 'find %s -type f',
+    \ }
+let g:ctrlp_use_caching = 0
+
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': ['java'] }
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_cpp_compiler_options = '-std=c++11'
+
+let g:unicoder_cancel_normal = 1
 " }}}1
 
 " Options {{{1
@@ -125,7 +171,7 @@ set wildignore+=node_modules
 set wildignore+=.env
 
 set nobackup
-set directory=$HOME/.vim/tmp
+set directory=$HOME/.vim/tmp//
 set viminfo='128,/32,:32,<64,@32,s10,h,n$HOME/.vim/viminfo
 set sessionoptions=blank,buffers,curdir,slash,tabpages,unix
 set cryptmethod=blowfish
@@ -180,9 +226,6 @@ set synmaxcol=512
 " }}}1
 
 " Mappings {{{1
-let mapleader = "\<Space>"
-let maplocalleader = "\<Space>"
-set pastetoggle=<F12>
 
 " Navigate by screen lines, not real lines.
 nnoremap j gj
@@ -196,18 +239,14 @@ nnoremap / /\v
 " Y behaves more like D, i.e. yanks to the end of line.
 nnoremap Y y$
 
-" Use cmdwin instead of cmdline.
-" nnoremap : q:
-" nnoremap Q :
-
-" Center screen on search match
+" Center screen on search match.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" Select just pasted text
-nnoremap <leader>v V`]
+" Select just pasted text.
+nnoremap gp V`]
 
-" Paste in visual mode without losing register content
+" Paste in visual mode without losing register content.
 xnoremap <expr> p v:register=='"'?'pgvy':'p'
 
 " Write as sudo
@@ -220,10 +259,6 @@ nnoremap <silent> <leader>hh :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>rv :source $MYVIMRC<cr>
 
-" Quicker window management.
-nnoremap <BS> <C-W>
-nnoremap <BS><BS> <C-W><C-W>
-
 nnoremap <leader>w :w<CR>
 
 " Good vacant mappings.
@@ -235,49 +270,6 @@ nnoremap <Del> <nop>
 " nnoremap \| <nop>
 " }}}1
 
-" Plugins {{{1
-" vim-sneak
-let g:sneak#streak = 1
-
-" operator-replace
-map gr <Plug>(operator-replace)
-
-" surround-vim
-nnoremap ys<space> ysl<space><space>
-
-" fugitive-vim
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>gr :Gread<CR>
-nnoremap <silent> <leader>ge :Gedit<CR>
-nnoremap <silent> <leader>gg :Ggrep <C-r><C-w><CR>
-
-" tagbar
-nnoremap <leader>t :TagbarOpenAutoClose<CR>
-
-" ctrl-p
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-if has('win32')
-    let g:ctrlp_cache_dir = $TEMP.'/ctrlp'
-endif
-let g:ctrlp_user_command = {
-    \ 'types': {
-        \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
-        \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
-    \ },
-    \ 'fallback': 'find %s -type f',
-    \ }
-let g:ctrlp_use_caching = 0
-
-" syntastic
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['java'] }
-" }}}1
-
 " Autocommands {{{1
 if has("autocmd")
     augroup FTOptions " {{{2
@@ -285,12 +277,17 @@ if has("autocmd")
         autocmd FileType vim setl fdm=marker sw=4 sts=4 ts=4
         autocmd FileType mail setl wrap
         autocmd FileType gitcommit setl spell
-        autocmd FileType python setl sw=4 sts=4 ts=4 et nosi
-        autocmd FileType haskell setl sw=4 sts=4 ts=4 et
-        autocmd FileType lisp setl commentstring=;;%s
-        autocmd FileType go setl sw=4 sts=4 ts=4 noet
+
+        autocmd FileType css,scss,sass,stylus setl sw=2 sts=2 ts=2 et nosi
+        autocmd FileType cpp setl sw=4 sts=4 ts=4 et
         autocmd FileType fish setl sw=4 sts=4 ts=4 et
-        autocmd FileType html,htmldjango,liquid setl
+        autocmd FileType go setl sw=4 sts=4 ts=4 noet
+        autocmd FileType haskell setl sw=4 sts=4 ts=4 et
+        autocmd FileType html,htmldjango,liquid setl sw=2 sts=2 ts=2 et
+        autocmd FileType lisp setl cms=;;%s
+        autocmd FileType python setl sw=4 sts=4 ts=4 et nosi
+        autocmd FileType ruby setl sw=2 sts=2 ts=2 et nosi
+        autocmd FileType rust setl sw=4 sts=4 ts=4 et nosi
     augroup END " }}}2
 
     augroup Misc " {{{2
@@ -334,6 +331,7 @@ endfunction
 
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+" }}}
 " Fix whitespace {{{
 highlight ExtraWhitespace ctermbg=darkred guibg=#382424
 
@@ -371,72 +369,6 @@ iab reutn return
 iab reurn return
 iab labmda lambda
 iab consoel console
-" }}}
-
-" Statusline {{{
-hi User3 guifg=#4e4e4e guibg=#ffffff gui=bold ctermfg=239 ctermbg=255 cterm=bold
-
-let g:last_mode = ''
-function! MylineMode()
-  let l:mode = mode()
-
-  if l:mode !=# g:last_mode
-    let g:last_mode = l:mode
-
-    hi User2 guifg=#005f00 guibg=#dfff00 gui=bold ctermfg=22 ctermbg=190 cterm=bold
-
-    if l:mode ==# 'n'
-    elseif l:mode ==# "i"
-      hi User2 guifg=#005fff guibg=#ffffff ctermfg=27 ctermbg=255
-    elseif l:mode ==# "R"
-      hi User2 guifg=#ffffff guibg=#df0000 ctermfg=255 ctermbg=160
-    elseif l:mode ==? "v" || l:mode ==# ""
-      hi User2 guifg=#4e4e4e guibg=#ffaf00 ctermfg=239 ctermbg=214
-    endif
-  endif
-
-  if     l:mode ==# "n"  | return "  NORMAL "
-  elseif l:mode ==# "i"  | return "  INSERT "
-  elseif l:mode ==# "v"  | return "  VISUAL "
-  elseif l:mode ==# "V"  | return "  V·LINE "
-  elseif l:mode ==# "" | return "  V·BLOK "
-  elseif l:mode ==# "R"  | return "  REPLACE "
-  else                   | return l:mode
-  endif
-endfunction
-
-function! MylineUpdate(active)
-    let sl = ""
-    if !a:active
-        let sl.= '%* %f %< %1*%m%*'
-    else
-        " let sl.= '%2*%{MylineMode()}%3*'
-        " let sl.= '%{strlen(fugitive#statusline()) > 0 ? " " : ""}'
-        " let sl.= '%{matchstr(fugitive#statusline(), "(\\zs.*\\ze)")}'
-        " let sl.= '%{strlen(fugitive#statusline()) > 0 ? " " : ""}'
-        let sl.= '%1*%m%*'
-        let sl.= '%1*%r%*'
-        let sl.= '%<%* %f'
-        let sl.= '%#WarningMsg#%{SyntasticStatuslineFlag()}%*'
-        let sl.= '%=%*'
-        let sl.= ' %{&fileformat} %{&fileencoding}'
-        let sl.= ' %{strlen(&filetype)>0?&filetype:"no-ft"}'
-        let sl.= ' %04b/0x%03B'
-        let sl.= ' %03vx%3*%03l%*/%03L'
-        let sl.= '%*'
-    endif
-    if &ft == 'nerdtree' | let sl = '%* NERDTree'
-    elseif &ft == 'gitcommit' | let sl = '%* Git'
-    elseif &ft == 'netrw' | let sl = '%* %f'
-    endif
-    call setwinvar(winnr(), '&statusline', sl)
-endfunction
-
-augroup statusline
-    au!
-    autocmd WinLeave * call MylineUpdate(0)
-    autocmd WinEnter,BufWinEnter * call MylineUpdate(1)
-augroup END
 " }}}
 
 if filereadable($HOME."/.vim/local/vimrc")
