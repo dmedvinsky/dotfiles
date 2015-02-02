@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 update_dir='/tmp/firefox_update'
 install_dir='/opt/firefox-nightly'
+apply_to_dir='/opt/firefox-nightly'
 
 rm -rf "${update_dir}"
 mkdir -p "${update_dir}"
@@ -18,7 +19,7 @@ cp "${install_dir}/updater" "${install_dir}/updater.ini" "${update_dir}"
 
 echo "Running update..."
 cd "${install_dir}" \
-    && sudo "${update_dir}/updater" "${update_dir}" "${install_dir}" \
+    && sudo "${update_dir}/updater" "${update_dir}" "${install_dir}" "${apply_to_dir}" \
     && cd $OLDPWD
 
 cat "${update_dir}/update.status"

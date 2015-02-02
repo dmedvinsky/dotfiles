@@ -46,7 +46,6 @@ set -g -x GEM_SPEC "$HOME/.cache/gem"
 set -g -x GOPATH "$HOME/src/go"
 
 # Various programs
-set -g -x GREP_OPTIONS '--color=auto'
 set -g -x LESSHISTFILE "/dev/null"
 set -g -x VIFM "$HOME/.config/vifm"
 set -g -x PSQLRC "$HOME/.config/psql/psqlrc"
