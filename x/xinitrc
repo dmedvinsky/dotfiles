@@ -37,6 +37,14 @@ export VIMPERATOR_RUNTIME="$HOME/.config/vimperator"
 export VIMPERATOR_INIT=":source $HOME/.config/vimperator/vimperatorrc"
 export GIMP2_DIRECTORY="$HOME/.config/gimp"
 
+# Syncronize X clipboard and selection buffers.
+if [ -x /usr/bin/autocutsel ]; then
+    # Keep the clipboard in sync with the primary buffer.
+    autocutsel -selection CLIPBOARD -fork
+    # Keep the primary in sync with the clipboard buffer.
+    autocutsel -selection PRIMARY -fork
+fi
+
 # Source local settings before running window manager.
 [ -f "${HOME}/.local/xinitrc" ] && . "${HOME}/.local/xinitrc"
 
