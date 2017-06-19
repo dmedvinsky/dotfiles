@@ -32,7 +32,10 @@ Rxvt.keysym.M-Escape: perl:keyboard-select:activate
 Rxvt.keysym.M-s:      perl:keyboard-select:search
 
 Rxvt.font:              \
+                        xft:Iosevka Light:pixelsize=14,\
                         xft:Envy Code R:pixelsize=13,\
+                        xft:Noto Mono:pixelsize=12,\
+                        xft:Mononoki:pixelsize=12,\
                         -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*,\
                         xft:FiraMono-Regular:pixelsize=12,\
                         xft:Monofur:pixelsize=14,\
@@ -40,7 +43,10 @@ Rxvt.font:              \
                         -*-ubuntu mono-medium-r-normal-*-*-*-*-*-*-*-*-*,\
                         xft:Monospace:pixelsize=12
 Rxvt.boldFont:          \
+                        xft:Iosevka Medium:pixelsize=14,\
                         xft:Envy Code R:pixelsize=13,\
+                        xft:Noto Mono:pixelsize=12,\
+                        xft:Mononoki Bold:pixelsize=12,\
                         -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-*,\
                         xft:FiraMono-Bold:pixelsize=12,\
                         xft:Monofur:pixelsize=14,\

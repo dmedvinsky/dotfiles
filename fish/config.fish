@@ -1,28 +1,20 @@
 # vim: fdm=marker
 
 # Environment variables {{{
+
 # Path
-test -d "/bin"; and set PATH "/bin"
 test -d "/sbin"; and set PATH "/sbin" $PATH
-test -d "/usr/bin"; and set PATH "/usr/bin" $PATH
+test -d "/bin"; and set PATH "/bin"
 test -d "/usr/sbin"; and set PATH "/usr/sbin" $PATH
-test -d "/usr/local/bin"; and set PATH "/usr/local/bin" $PATH
+test -d "/usr/bin"; and set PATH "/usr/bin" $PATH
 test -d "/usr/local/sbin"; and set PATH "/usr/local/sbin" $PATH
-test -d "$HOME/.android/sdk/tools"; and set PATH "$HOME/.android/sdk/tools" $PATH
-test -d "$HOME/.android/sdk/platform-tools"; and set PATH "$HOME/.android/sdk/platform-tools" $PATH
-test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
-test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
-test -d "$HOME/.rbenv/shims"; and set PATH "$HOME/.rbenv/shims" $PATH
-test -d "$HOME/.pyenv/bin"; and set -x PATH "$HOME/.pyenv/bin" $PATH
-test -d "$HOME/.pyenv/shums"; and set -x PATH "$HOME/.pyenv/shims" $PATH
-test -d "/opt/vagrant/bin"; and set PATH "/opt/vagrant/bin" $PATH
-test -d "$HOME/src/go/bin"; and set PATH "$HOME/src/go/bin" $PATH
+test -d "/usr/local/bin"; and set PATH "/usr/local/bin" $PATH
 test -d "$HOME/.local/bin"; and set PATH "$HOME/.local/bin" $PATH
-test -d ".cabal-sandbox/bin"; and set PATH ".cabal-sandbox/bin" $PATH
 
 # Globally recognised variables
-set -g -x VISUAL vim
-set -g -x EDITOR vim
+set -g -x LANG en_US.UTF-8
+set -g -x VISUAL vi
+set -g -x EDITOR vi
 set -g -x PAGER less
 
 # Fish shell
@@ -33,35 +25,48 @@ set -g -x __fish_git_prompt_showuntrackedfiles 1
 set -g -x __fish_git_prompt_showupstream auto,verbose
 set -g -x __fish_git_prompt_color magenta
 set -g -x __fish_git_prompt_color_dirtystate red
+set FISH_CLIPBOARD_CMD "cat"
 
 # Python
 set -g -x PIP_DOWNLOAD_CACHE "$HOME/.cache/pip"
 set -g -x VIRTUAL_ENV_DISABLE_PROMPT true
 test -r "$HOME/.config/pythonrc.py"; and set -g -x PYTHONSTARTUP "$HOME/.config/pythonrc.py"
-
+test -d "$HOME/.pyenv/bin"; and set -x PATH "$HOME/.pyenv/bin" $PATH
+test -d "$HOME/.pyenv/shims"; and set -x PATH "$HOME/.pyenv/shims" $PATH
 # Ruby
 set -g -x GEM_SPEC "$HOME/.cache/gem"
-
+test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
+test -d "$HOME/.rbenv/shims"; and set PATH "$HOME/.rbenv/shims" $PATH
 # Go
 set -g -x GOPATH "$HOME/src/go"
+test -d "$HOME/src/go/bin"; and set PATH "$HOME/src/go/bin" $PATH
+# JS
+set -g -x NPM_CONFIG_USERCONFIG "$HOME/.config/npm/npmrc"
+test -d "$HOME/.local/share/npm/bin"; and set PATH "$HOME/.local/share/npm/bin" $PATH
+# Haskell
+test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
+test -d ".cabal-sandbox/bin"; and set PATH ".cabal-sandbox/bin" $PATH
+# Rust
+set -g -x CARGO_HOME "$HOME/.local/share/cargo"
+test -d "$HOME/.local/share/cargo/bin"; and set PATH "$HOME/.local/share/cargo/bin" $PATH
+# Android
+set -g -x ANDROID_HOME "$HOME/.android"
+set -g -x ANDROID_SDK_ROOT "$HOME/.android"
+test -d "$ANDROID_HOME/emulator"; and set PATH "$ANDROID_HOME/emulator" $PATH
+test -d "$ANDROID_HOME/tools/bin"; and set PATH "$ANDROID_HOME/tools/bin" $PATH
+test -d "$ANDROID_HOME/platform-tools"; and set PATH "$ANDROID_HOME/platform-tools" $PATH
 
 # Various programs
 set -g -x LESSHISTFILE "/dev/null"
 set -g -x VIFM "$HOME/.config/vifm"
 set -g -x PSQLRC "$HOME/.config/psql/psqlrc"
 set -g -x HTTPIE_CONFIG_DIR "$HOME/.config/httpie"
-# set -g -x CMUS_HOME "$HOME/.config/cmus"
-# set -g -x RXVT_SOCKET "$HOME/.cache/urxvtd.sock"
-# set -g -x PENTADACTYL_RUNTIME "$HOME/.config/pentadactyl"
-# set -g -x VIMPERATOR_RUNTIME "$HOME/.config/vimperator"
-# set -g -x VIMPERATOR_INIT ":source $HOME/.config/vimperator/vimperatorrc"
-# set -g -x GIMP2_DIRECTORY "$HOME/.config/gimp"
 
 # }}}
 
 # Aliases {{{
 # Fish config editing
-function ef; vim ~/.config/fish/config.fish; end
+function ef; eval $EDITOR ~/.config/fish/config.fish; end
 function rf; . ~/.config/fish/config.fish; end
 
 # Directories traversal
@@ -89,7 +94,16 @@ else
     function l;  ll $argv; end
 end
 
-function fm; vifm . .; end
+if which vifm >/dev/null ^/dev/null
+    function fm; vifm . .; end
+end
+
+if which tmux >/dev/null ^/dev/null
+    function a; tmux attach; end
+end
+if which tmuxp >/dev/null ^/dev/null
+    function p; tmuxp load $argv; end
+end
 
 # Systemd
 if which systemctl >/dev/null ^/dev/null
@@ -109,5 +123,12 @@ if status --is-interactive
     if which pyenv >/dev/null ^/dev/null
         . (pyenv init - | psub)
         . (pyenv virtualenv-init - | psub)
+    end
+
+    if test -z "$SSH_ENV"
+      set -xg SSH_ENV $HOME/.ssh/environment
+    end
+    if not __ssh_agent_is_started
+        __ssh_agent_start
     end
 end

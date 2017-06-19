@@ -1,6 +1,7 @@
 [user]
     name = Dmitry Medvinsky
     email = me@dmedvinsky.name
+    useconfigonly = true
 [help]
     autocorrect = -1
 [core]

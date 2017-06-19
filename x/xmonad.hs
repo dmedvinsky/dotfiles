@@ -21,7 +21,6 @@ import           XMonad.Layout.PerWorkspace
 import           XMonad.Layout.Tabbed
 
 import           XMonad.Util.NamedScratchpad
-import           XMonad.Util.Paste
 import           XMonad.Util.SpawnOnce
 
 
@@ -31,38 +30,22 @@ main = do
       $ myConfig
 
 -- Settings {{{
-myTerminal           = "urxvt"
-myModMask            = mod4Mask
-myFocusFollowsMouse  = True
-myBorderWidth        = 1
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
-myWorkspaces         = map show [1..9] ++ ["0", "-", "="]
-myUrgencyHook        = dzenUrgencyHook { args = myDzenUrgencyArgs }
-myUrgencyConfig      = urgencyConfig { remindWhen = Every $ 10 }
-myDzenUrgencyArgs    = [
-    "-xs", "1"
-  , "-p",  "2"
-  , "-bg", "darkgreen"
-  , "-fn", "-*-fixed-medium-r-*-*-10-*-*-*-*-*-*-*"
-  ]
-
 myConfig = defaultConfig {
-    terminal           = myTerminal
-  , modMask            = myModMask
-  , workspaces         = myWorkspaces
+    terminal           = "urxvt"
+  , modMask            = mod4Mask
+  , workspaces         = map show [1..9] ++ ["0", "-", "="]
+  , focusFollowsMouse  = True
+  , clickJustFocuses   = True
+  , borderWidth        = 1
+  , normalBorderColor  = "#dddddd"
+  , focusedBorderColor = "#ff0000"
+
+  , startupHook        = myStartupHook
   , manageHook         = myManageHook
   , layoutHook         = myLayout
   -- , logHook            = myXmobarLogHook bar
-  , startupHook        = myStartupHook
-
   , keys               = myKeys
   , mouseBindings      = myMouseBindings
-  , focusFollowsMouse  = myFocusFollowsMouse
-
-  , borderWidth        = myBorderWidth
-  , normalBorderColor  = myNormalBorderColor
-  , focusedBorderColor = myFocusedBorderColor
 }
 -- }}}
 
@@ -70,16 +53,14 @@ myConfig = defaultConfig {
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "xautolock"
-    -- spawnOnce "xbindkeys -f /home/dmedvinsky/.config/xbindkeys/rc"
-    -- spawnOnce "urxvtd -q -o -f"
-    -- spawnOnce "stalonetray"
     spawnOnce "workrave"
 -- }}}
 
 -- Window rules {{{
 scratchpads = [
     NS "keepassx" "keepassx" (className =? "Keepassx") defaultFloating
-  , NS "deadbeef" "deadbeef" (className =? "Deadbeef") defaultFloating
+  , NS "skype"    "skype"    (className =? "Skype"   ) defaultFloating
+  , NS "workrave" "workrave" (className =? "Workrave") defaultFloating
   ]
 
 trayMonitor = monitor {
@@ -99,9 +80,9 @@ myManageHookRules = composeAll
     isFullscreen --> doFullFloat
   , role =? "GtkFileChooserDialog" --> doCenterFloat
   , role =? "GtkFileChooserDialog" --> doF W.swapMaster
-  , className =? "Workrave" --> doIgnore
+  -- , className =? "Workrave" --> doIgnore
   -- , className =? "stalonetray" --> doIgnore
-  , className =? "Skype" --> doShift "="
+  -- , className =? "Skype" --> doShift "="
   , className =? "feh" --> doFullFloat
   , currentWs =? "2" --> keepMaster ("Firefox" ==) className
   ]
@@ -154,7 +135,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((m, xK_comma ), sendMessage (IncMasterN 1))
     , ((m, xK_period), sendMessage (IncMasterN (-1)))
 
-    , ((m, xK_c), kill)
+    , ((m .|. c, xK_c), kill)
     , ((m, xK_BackSpace), withFocused (sendMessage . maximizeRestore))
     , ((m, xK_j), windows W.focusDown)
     , ((m, xK_k), windows W.focusUp)
@@ -166,18 +147,14 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((m, xK_t), withFocused $ windows . W.sink)
     , ((m, xK_u), focusUrgent)
     , ((m, xK_Tab), toggleWS)
-    , ((m, xK_p), pasteSelection)
     , ((m, xK_slash), goToSelected defaultGSConfig)
 
     , ((m, xK_F1), spawn "toggle_tray.sh")
     , ((m, xK_F2), spawn "firefox")
-    , ((m, xK_F3), spawn "skype")
-    , ((m, xK_F9), spawn "mpctl prev")
-    , ((m, xK_F10), spawn "mpctl toggle")
-    , ((m, xK_F11), spawn "mpctl next")
     , ((m, xK_F12), spawn "lock")
     , ((m, xK_a), namedScratchpadAction scratchpads "keepassx")
-    , ((m, xK_m), namedScratchpadAction scratchpads "deadbeef")
+    , ((m, xK_s), namedScratchpadAction scratchpads "skype")
+    , ((m, xK_d), namedScratchpadAction scratchpads "workrave")
     ]
 
     -- mod-[1..9], Switch to workspace N
@@ -189,10 +166,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-    ++
-    [((mod .|. modMask, key), screenWorkspace screen >>= flip whenJust (windows . f))
-        | (key, screen) <- zip [xK_e, xK_w] [0..]
-        , (f, mod) <- [(W.view, 0), (W.shift, shiftMask)]]
+    -- ++
+    -- [((mod .|. modMask, key), screenWorkspace screen >>= flip whenJust (windows . f))
+    --     | (key, screen) <- zip [xK_e, xK_w] [0..]
+    --     , (f, mod) <- [(W.view, 0), (W.shift, shiftMask)]]
 
     -- ++
     -- [

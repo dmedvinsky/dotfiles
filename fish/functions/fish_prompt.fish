@@ -23,7 +23,7 @@ end
 function fish_prompt
     set last_status $status
 
-    printf ' \n'
+    printf '\n'
 
     # username
     set_color magenta
@@ -44,6 +44,21 @@ function fish_prompt
     # cool stuff
     __fish_git_prompt
     __virtual_env
+
+    # if test -n "$fish_bind_mode"
+    #     switch $fish_bind_mode
+    #         case default
+    #             set_color -b green black
+    #             printf " N "
+    #         case insert
+    #             set_color black
+    #             printf " I "
+    #         case visual
+    #             set_color -b yellow black
+    #             printf " V "
+    #     end
+    #     set_color normal
+    # end
 
     printf '\n'
 

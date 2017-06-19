@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-path="~/.local/share/wallpapers/"
-feh --bg-scale $path/$(ls $path/ | sort -R | tail -1)
+wallpapers="/data/dmedvinsky/pic/wallpapers"
+wallpaper="$wallpapers/$(ls $wallpapers/ | sort -R | tail -1)"
+DISPLAY=:0 feh --bg-scale "$wallpaper"

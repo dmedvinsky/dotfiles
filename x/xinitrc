@@ -8,7 +8,8 @@ fi
 
 # Custom keyboard hacks.
 [ -f "${HOME}/.Xmodmap" ] && xmodmap "${HOME}/.Xmodmap"
-xcape -e 'Shift_L=parenleft;Shift_R=parenright;Caps_Lock=Escape'
+# xcape -e 'Shift_L=parenleft;Shift_R=parenright;Caps_Lock=Escape'
+xcape -e 'Caps_Lock=Escape'
 
 # Configure mouse and keyboard sensivity, disable beeping.
 xset r rate 270 55
@@ -50,5 +51,5 @@ fi
 
 # Start window manager.
 if [ -n "$2"  ] ; then wm="$2";   fi
-if [ -z "$wm" ] ; then wm=xmonad; fi
+if [ -z "$wm" ] ; then wm=i3; fi
 exec "$wm"
