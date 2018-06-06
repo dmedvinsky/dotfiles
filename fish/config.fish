@@ -33,6 +33,7 @@ set -g -x VIRTUAL_ENV_DISABLE_PROMPT true
 test -r "$HOME/.config/pythonrc.py"; and set -g -x PYTHONSTARTUP "$HOME/.config/pythonrc.py"
 test -d "$HOME/.pyenv/bin"; and set -x PATH "$HOME/.pyenv/bin" $PATH
 test -d "$HOME/.pyenv/shims"; and set -x PATH "$HOME/.pyenv/shims" $PATH
+set -g fish_user_paths "/usr/local/opt/gettext/bin" $fish_user_paths
 # Ruby
 set -g -x GEM_SPEC "$HOME/.cache/gem"
 test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
@@ -55,6 +56,7 @@ set -g -x ANDROID_SDK_ROOT "$HOME/.android"
 test -d "$ANDROID_HOME/emulator"; and set PATH "$ANDROID_HOME/emulator" $PATH
 test -d "$ANDROID_HOME/tools/bin"; and set PATH "$ANDROID_HOME/tools/bin" $PATH
 test -d "$ANDROID_HOME/platform-tools"; and set PATH "$ANDROID_HOME/platform-tools" $PATH
+test -d "$ANDROID_HOME/build-tools/26.0.0"; and set PATH "$ANDROID_HOME/build-tools/26.0.0" $PATH
 
 # Various programs
 set -g -x LESSHISTFILE "/dev/null"
@@ -123,6 +125,10 @@ if status --is-interactive
     if which pyenv >/dev/null ^/dev/null
         . (pyenv init - | psub)
         . (pyenv virtualenv-init - | psub)
+    end
+
+    if which rbenv >/dev/null ^/dev/null
+        . (rbenv init -|psub)
     end
 
     if test -z "$SSH_ENV"
