@@ -49,14 +49,14 @@ test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
 test -d ".cabal-sandbox/bin"; and set PATH ".cabal-sandbox/bin" $PATH
 # Rust
 set -g -x CARGO_HOME "$HOME/.local/share/cargo"
-test -d "$HOME/.local/share/cargo/bin"; and set PATH "$HOME/.local/share/cargo/bin" $PATH
+test -d "$CARGO_HOME/bin"; and set PATH "$CARGO_HOME/bin" $PATH
 # Android
-set -g -x ANDROID_HOME "$HOME/.android"
-set -g -x ANDROID_SDK_ROOT "$HOME/.android"
 test -d "$ANDROID_HOME/emulator"; and set PATH "$ANDROID_HOME/emulator" $PATH
 test -d "$ANDROID_HOME/tools/bin"; and set PATH "$ANDROID_HOME/tools/bin" $PATH
 test -d "$ANDROID_HOME/platform-tools"; and set PATH "$ANDROID_HOME/platform-tools" $PATH
 test -d "$ANDROID_HOME/build-tools/26.0.0"; and set PATH "$ANDROID_HOME/build-tools/26.0.0" $PATH
+set -g -x ANDROID_HOME "$HOME/Library/Android"
+set -g -x ANDROID_SDK_ROOT "$ANDROID_HOME/sdk"
 
 # Various programs
 set -g -x LESSHISTFILE "/dev/null"
@@ -128,7 +128,7 @@ if status --is-interactive
     end
 
     if which rbenv >/dev/null ^/dev/null
-        . (rbenv init -|psub)
+        . (rbenv init - | psub)
     end
 
     if test -z "$SSH_ENV"
