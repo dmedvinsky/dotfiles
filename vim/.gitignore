@@ -1,3 +1,4 @@
 /viminfo
-/bundle/
+/autoload/*.old
+/bundles/
 /local/

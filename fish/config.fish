@@ -1,79 +1,93 @@
 # vim: fdm=marker
 
+function _myfish_check_prog
+    which $argv >/dev/null 2>/dev/null
+end
+
 ### Environment variables {{{
 
 ## Path
-test -d "/sbin"; and set PATH "/sbin" $PATH
-test -d "/bin"; and set PATH "/bin"
-test -d "/usr/sbin"; and set PATH "/usr/sbin" $PATH
-test -d "/usr/bin"; and set PATH "/usr/bin" $PATH
-test -d "/usr/local/sbin"; and set PATH "/usr/local/sbin" $PATH
-test -d "/usr/local/bin"; and set PATH "/usr/local/bin" $PATH
-test -d "$HOME/.local/bin"; and set PATH "$HOME/.local/bin" $PATH
+test -d "/sbin"; and fish_add_path "/sbin"
+test -d "/bin"; and fish_add_path "/bin"
+test -d "/usr/sbin"; and fish_add_path "/usr/sbin"
+test -d "/usr/bin"; and fish_add_path "/usr/bin"
+test -d "/usr/local/sbin"; and fish_add_path "/usr/local/sbin"
+test -d "/usr/local/bin"; and fish_add_path "/usr/local/bin"
+test -d "$HOME/.local/bin"; and fish_add_path "$HOME/.local/bin"
 
 ## Globally recognised variables
 set -g -x LANG en_US.UTF-8
-set -g -x VISUAL vi
-set -g -x EDITOR vi
-set -g -x PAGER less
-
-## Fish shell
-# set -g -x fish_greeting ''
-# set -g -x __fish_git_prompt_showdirtystate 1
-# set -g -x __fish_git_prompt_showstashstate 1
-# set -g -x __fish_git_prompt_showuntrackedfiles 1
-# set -g -x __fish_git_prompt_showupstream auto,verbose
-# set -g -x __fish_git_prompt_color magenta
-# set -g -x __fish_git_prompt_color_dirtystate red
-# set FISH_CLIPBOARD_CMD "cat"
+if _myfish_check_prog nvim
+    set -g -x VISUAL nvim
+    set -g -x EDITOR nvim
+else if _myfish_check_prog vim
+    set -g -x VISUAL vim
+    set -g -x EDITOR vim
+else
+    set -g -x VISUAL vi
+    set -g -x EDITOR vi
+end
+if _myfish_check_prog bat
+  set -g -x PAGER bat
+  set -g -x BAT_STYLE changes,header,rule,snip
+else
+  set -g -x PAGER less
+end
+set -g -x XDG_DATA_HOME "$HOME/.local/share"
+set -g -x XDG_CONFIG_HOME "$HOME/.config"
+set -g -x XDG_STATE_HOME "$HOME/.local/state"
+set -g -x XDG_CACHE_HOME "$HOME/.cache"
+set -g -x XDG_RUNTIME_DIR "/run/user/$UID"
 
 ## Python
 set -g -x PIP_DOWNLOAD_CACHE "$HOME/.cache/pip"
 set -g -x VIRTUAL_ENV_DISABLE_PROMPT true
+# set -g -x PYENV_ROOT "$XDG_DATA_HOME"/pyenv
 set -g fish_user_paths "/usr/local/opt/gettext/bin" $fish_user_paths
-# test -d "$HOME/.pyenv/bin"; and set -x PATH "$HOME/.pyenv/bin" $PATH
-# test -d "$HOME/.pyenv/shims"; and set -x PATH "$HOME/.pyenv/shims" $PATH
-# test -r "$HOME/.config/pythonrc.py"; and set -g -x PYTHONSTARTUP "$HOME/.config/pythonrc.py"
 ## Ruby
-# set -g -x GEM_SPEC "$HOME/.cache/gem"
-# test -d "$HOME/.rbenv/bin"; and set PATH "$HOME/.rbenv/bin" $PATH
-# test -d "$HOME/.rbenv/shims"; and set PATH "$HOME/.rbenv/shims" $PATH
-## Go
-# set -g -x GOPATH "$HOME/src/go"
-# test -d "$HOME/src/go/bin"; and set PATH "$HOME/src/go/bin" $PATH
+set -g -x GEM_SPEC "$HOME/.cache/gem"
+set -g -x BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME"/bundle
+set -g -x BUNDLE_USER_CACHE "$XDG_CACHE_HOME"/bundle
+set -g -x BUNDLE_USER_PLUGIN "$XDG_DATA_HOME"/bundle
 ## JS
 set -g -x NPM_CONFIG_USERCONFIG "$HOME/.config/npm/npmrc"
-test -d "$HOME/.local/share/npm/bin"; and set PATH "$HOME/.local/share/npm/bin" $PATH
-test -d "$HOME/.yarn"; and set PATH "$HOME/.yarn/bin" $PATH; and set PATH "$HOME/.config/yarn/global/node_modules/.bin" $PATH
-## Haskell
-# test -d "$HOME/.cabal/bin"; and set PATH "$HOME/.cabal/bin" $PATH
-# test -d ".cabal-sandbox/bin"; and set PATH ".cabal-sandbox/bin" $PATH
-## Rust
-# set -g -x CARGO_HOME "$HOME/.local/share/cargo"
-# test -d "$CARGO_HOME/bin"; and set PATH "$CARGO_HOME/bin" $PATH
-## Android
-# test -d "$ANDROID_HOME/emulator"; and set PATH "$ANDROID_HOME/emulator" $PATH
-# test -d "$ANDROID_HOME/tools/bin"; and set PATH "$ANDROID_HOME/tools/bin" $PATH
-# test -d "$ANDROID_HOME/platform-tools"; and set PATH "$ANDROID_HOME/platform-tools" $PATH
-# test -d "$ANDROID_HOME/build-tools/26.0.0"; and set PATH "$ANDROID_HOME/build-tools/26.0.0" $PATH
-# set -g -x ANDROID_HOME "$HOME/Library/Android"
-# set -g -x ANDROID_SDK_ROOT "$ANDROID_HOME/sdk"
+# set -g -x NVM_DIR "$XDG_DATA_HOME"/nvm
+test -d "$HOME/.local/share/npm/bin"; and fish_add_path "$HOME/.local/share/npm/bin"
+test -d "$HOME/.yarn"; and fish_add_path "$HOME/.yarn/bin"; and fish_add_path "$HOME/.config/yarn/global/node_modules/.bin"
 
 ## Various programs
 set -g -x LESSHISTFILE "/dev/null"
-set -g -x VIFM "$HOME/.config/vifm"
+set -g -x AWS_SHARED_CREDENTIALS_FILE "$XDG_CONFIG_HOME"/aws/credentials
+set -g -x AWS_CONFIG_FILE "$XDG_CONFIG_HOME"/aws/config
 set -g -x PSQLRC "$HOME/.config/psql/psqlrc"
+set -g -x VIFM "$HOME/.config/vifm"
 set -g -x HTTPIE_CONFIG_DIR "$HOME/.config/httpie"
+set -g -x GNUPGHOME "$XDG_DATA_HOME"/gnupg
+set -g -x RIPORT 8079
+# set -g -x DOCKER_CONFIG "$XDG_CONFIG_HOME"/docker
+
 
 ### }}}
 
 ### Aliases {{{
 ## Fish config editing
-function ef; eval $EDITOR ~/.config/fish/config.fish; end
-function rf; . ~/.config/fish/config.fish; end
+alias ef="eval $EDITOR ~/.config/fish/config.fish"
+alias rf="source ~/.config/fish/config.fish"
+
+alias vi="nvim"
+alias vim="nvim"
 
 ## Directories listing
-if which tree >/dev/null ^/dev/null
+if _myfish_check_prog exa
+    alias  l1="exa --tree --group-directories-first --level=1"
+    alias  l2="exa --tree --group-directories-first --level=2"
+    alias  l3="exa --tree --group-directories-first --level=3"
+    alias ll1="exa --tree --long --all --group-directories-first --level=1"
+    alias ll2="exa --tree --long --all --group-directories-first --level=2"
+    alias ll3="exa --tree --long --all --group-directories-first --level=3"
+    alias   l="l1"
+    alias  ll="ll1"
+else if _myfish_check_prog tree
     function l1;  tree --dirsfirst -ChFL 1 $argv; end
     function l2;  tree --dirsfirst -ChFL 2 $argv; end
     function l3;  tree --dirsfirst -ChFL 3 $argv; end
@@ -90,17 +104,24 @@ else
 end
 
 ## Various programs
-function less; command less -R $argv; end
-
-if which vifm >/dev/null ^/dev/null
-    function fm; vifm . .; end
+if _myfish_check_prog bat
+    alias cat="bat"
+    alias less="bat"
+else
+    alias less="less -R"
 end
 
-if which tmux >/dev/null ^/dev/null
-    function a; tmux attach; end
+if _myfish_check_prog nnn
+    alias fm="nnn -dHi"
+else if _myfish_check_prog vifm
+    alias fm="vifm . ."
 end
-if which tmuxp >/dev/null ^/dev/null
-    function p; tmuxp load $argv; end
+
+if _myfish_check_prog tmux
+    abbr --add a tmux attach
+end
+if _myfish_check_prog tmuxp
+    abbr --add p tmuxp load
 end
 # }}}
 
@@ -111,18 +132,9 @@ end
 
 ### Startup
 if status --is-interactive
-    if which direnv >/dev/null ^/dev/null
+    if _myfish_check_prog direnv
         eval (direnv hook fish)
     end
-
-    # if which pyenv >/dev/null ^/dev/null
-    #     source (pyenv init - | psub)
-    #     source (pyenv virtualenv-init - | psub)
-    # end
-
-    # if which rbenv >/dev/null ^/dev/null
-    #     source (rbenv init - | psub)
-    # end
 
     if test -z "$SSH_ENV"
       set -xg SSH_ENV $HOME/.ssh/environment

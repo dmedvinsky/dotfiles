@@ -2,37 +2,47 @@ let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 
 " Plugins {{{1
+let g:filebeagle_suppress_keymaps = 1
+
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\   'python': ['flake8', 'mypy'],
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black', 'isort'],
+\}
+let g:ale_python_mypy_ignore_invalid_syntax = 1
+
 set runtimepath+=$HOME/.config/vim/
 call plug#begin('~/.config/vim/bundles')
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
-Plug 'jeetsukumaran/vim-filebeagle'
-Plug 'svermeulen/vim-NotableFt'
-Plug 'w0rp/ale'
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-" Plug 'tpope/vim-sensible'
-" Plug 'tpope/vim-rsi'
-
+" Objects, motions, operators and such
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-operator-user'
 Plug 'wellle/targets.vim'
 Plug 'Julian/vim-textobj-variable-segment'
+Plug 'svermeulen/vim-NotableFt'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 
+" Filetypes
 Plug 'tpope/vim-git'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
-" Plug 'fatih/vim-go'
-" Plug 'vim-ruby/vim-ruby'
-" Plug 'slim-template/vim-slim'
-" Plug 'aliva/vim-fish'
-" Plug 'othree/html5.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'Vimjas/vim-python-pep8-indent'
 
+" File management
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'jeetsukumaran/vim-filebeagle'
+
+" Code intel
+Plug 'tpope/vim-fugitive'
+Plug 'dense-analysis/ale'
+
+" Colors
 Plug 'morhetz/gruvbox'
 
 call plug#end()
@@ -40,56 +50,22 @@ call plug#end()
 set background=dark
 colorscheme gruvbox
 
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gw :Gwrite<CR>
+nmap <silent> - <Plug>FileBeagleOpenCurrentBufferDir
+
+nnoremap <silent> <leader>f :GFiles<CR>
+nnoremap <silent> <leader>: :Commands<CR>
+
+nnoremap <silent> <leader>gs :Git<CR>
+nnoremap <silent> <leader>gd :Gdiffsplit<CR>
 nnoremap <silent> <leader>gr :Gread<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
 nnoremap <silent> <leader>gg :Ggrep <C-r><C-w><CR>
 
-nnoremap <leader>t :TagbarOpenAutoClose<CR>
-
-" nmap coq <plug>(QuickScopeToggle)
-
-let g:ctrlp_use_caching = 0
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-if has('win32')
-    let g:ctrlp_cache_dir = $TEMP.'/ctrlp'
-endif
-let g:ctrlp_user_command = {
-    \ 'types': {
-        \ 1: ['.git', 'git -C %s ls-files . -co --exclude-standard'],
-        \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
-    \ },
-    \ 'fallback': 'find %s -type f',
-    \ }
-
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['java'] }
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_cpp_compiler_options = '-std=c++11'
-
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_fixers = {
-\   'python': [
-\       'black',
-\       'isort',
-\   ],
-\}
-
-
 nnoremap <silent> <leader>af :ALEFix<CR>
+nnoremap <silent> <leader>ad :ALEGoToDefinition<CR>
 " }}}1
 
 " Options {{{1
-set cpoptions+=J
-
 set nomodeline  " modeline is a security issue
 
 set termencoding=utf-8
@@ -111,7 +87,7 @@ set formatoptions-=o  " Do not continue comments when pressing o/O
 set formatoptions+=q  " Allow gq on comments
 set formatoptions+=l  " Don't break long lines if it was long when entering insert mode
 set formatoptions+=1  " Don't break after 1-letter word, break before it
-set formatoptions+=j  " Remove comment leader wehn joining lines
+set formatoptions+=j  " Remove comment leader when joining lines
 set shellslash
 set autoread
 set autowrite
@@ -164,8 +140,8 @@ set wildcharm=<TAB>
 set wildmode=list:longest
 
 set wildignore+=.git,.hg,_darcs,.svn
+set wildignore+=*.pyc,*.pyo,__pycache__
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
-set wildignore+=*.pyc,*.pyo
 set wildignore+=*.hi
 set wildignore+=*.luac
 set wildignore+=*.aux,*.out,*.toc
@@ -179,7 +155,7 @@ set wildignore+=node_modules
 set wildignore+=.env
 
 set nobackup
-set directory=$HOME/.cache/vim//
+set directory=$HOME/.cache/vim/swap/
 set viminfo='128,/32,:32,<64,@32,s10,h,n$HOME/.cache/vim/viminfo
 set sessionoptions=blank,buffers,curdir,slash,tabpages,unix
 set cryptmethod=blowfish
@@ -216,26 +192,30 @@ if has('gui_running') " {{{2
     set mousemodel=popup
 
     set guioptions-=T  " No toolbar
-    set guioptions-=l  " No scrollbars
-    set guioptions-=r
-    set guioptions-=L
-    set guioptions-=R
+    set guioptions-=l  " No scrollbars:
+    set guioptions-=L  "   left
+    set guioptions-=r  "   and
+    set guioptions-=R  "   right
     set guioptions-=m  " No menu
 
-    set guicursor=n-v-c:block-Cursor-blinkon0
+    set guicursor=n-v-c:block-blinkon0-Cursor
     set guicursor+=ve:ver35-Cursor
     set guicursor+=o:hor50-Cursor
     set guicursor+=i-ci:ver25-Cursor
     set guicursor+=r-cr:hor20-Cursor
-    set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon17
+    set guicursor+=sm:block-blinkwait175-blinkoff150-blinkon17-Cursor
 
     set guifont=Iosevka-SS14-Extended:h15
-    if has('gui_macvim')
-        set macligatures
-    endif
 endif " }}}2
 
+if has('gui_macvim')
+    set macligatures
+endif
+
 set synmaxcol=512
+
+syn match NBSP '\%xa0' conceal cchar=␣
+syn match NarrowNBSP '\%u202F' conceal cchar=⸤
 " }}}1
 
 " Mappings {{{1
@@ -246,19 +226,11 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" Better moving by paragraph.
-" nnoremap <expr> { len(getline(line('.')-1)) > 0 ? '{+' : '{-'
-" nnoremap <expr> } len(getline(line('.')+1)) > 0 ? '}-' : '}+'
-
 " Very magic search by default.
 nnoremap / /\v
 
 " Y behaves more like D, i.e. yanks to the end of line.
 nnoremap Y y$
-
-" Center screen on search match.
-nnoremap n nzzzv
-nnoremap N Nzzzv
 
 " Select just pasted text.
 nnoremap gp V`]
@@ -286,9 +258,29 @@ nnoremap <leader>q :q<CR>
 
 nnoremap <Backspace> <C-W>w
 
+" Accept autocomplete by enter and tab.
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "<C-p>"
+
+" vim-unimpaired mappings I use
+function! s:Context(reverse) abort
+  call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
+endfunction
+
+nnoremap <silent> [q :cprev<CR>
+nnoremap <silent> ]q :cnext<CR>
+nnoremap <silent> [l :lprev<CR>
+nnoremap <silent> ]l :lnext<CR>
+nnoremap <silent> [t :tprev<CR>
+nnoremap <silent> ]t :tnext<CR>
+nnoremap <silent> [n :<C-U>call <SID>Context(1)<CR>
+nnoremap <silent> ]n :<C-U>call <SID>Context(0)<CR>
+nmap <silent> [a <Plug>(ale_previous_wrap)
+nmap <silent> ]a <Plug>(ale_next_wrap)
+
+
 " Good vacant mappings.
 " nnoremap U <nop>
-" nnoremap K <nop>
 " nnoremap <Del> <nop>
 " nnoremap <CR> <nop>
 " nnoremap _ <nop>
@@ -303,16 +295,14 @@ if has("autocmd")
         autocmd FileType mail setl wrap
         autocmd FileType gitcommit setl spell
 
-        autocmd FileType css,scss,sass,stylus setl sw=2 sts=2 ts=2 et nosi
-        autocmd FileType cpp setl sw=4 sts=4 ts=4 et
-        autocmd FileType fish setl sw=4 sts=4 ts=4 et
-        autocmd FileType go setl sw=4 sts=4 ts=4 noet
-        autocmd FileType haskell setl sw=4 sts=4 ts=4 et
-        autocmd FileType html,htmldjango,liquid setl sw=2 sts=2 ts=2 et
-        autocmd FileType lisp setl cms=;;%s
-        autocmd FileType python setl sw=4 sts=4 ts=4 et nosi
-        autocmd FileType ruby setl sw=2 sts=2 ts=2 et nosi
-        autocmd FileType rust setl sw=4 sts=4 ts=4 et nosi
+        autocmd FileType python setl et ai nosi sw=4 sts=4 ts=4 fdm=indent
+        autocmd FileType html,htmldjango,liquid setl et ai sw=2 sts=2 ts=2
+        autocmd FileType css,scss,sass,stylus setl et nosi sw=2 sts=2 ts=2
+        autocmd FileType go setl noet sw=4 sts=4 ts=4
+        autocmd FileType rust setl et nosi sw=4 sts=4 ts=4
+        autocmd FileType haskell setl et sw=4 sts=4 ts=4
+        autocmd FileType ruby setl et nosi sw=2 sts=2 ts=2
+        autocmd FileType fish setl et sw=4 sts=4 ts=4
     augroup END " }}}2
 
     augroup Misc " {{{2
@@ -331,7 +321,7 @@ if has("autocmd")
         autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     augroup END " }}}2
 
-    augroup command_window
+    augroup command_window " {{{2
         autocmd!
         " Have <Ctrl-C> leave cmdline-window.
         autocmd CmdwinEnter * nnoremap <buffer> <C-c> :q\|echo ""<cr>
@@ -340,7 +330,7 @@ if has("autocmd")
         autocmd CmdwinEnter * startinsert
         autocmd CmdwinEnter * setl nonumber
         autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-    augroup END
+    augroup END " }}}2
 end
 " }}}1
 
@@ -357,6 +347,7 @@ endfunction
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 " }}}
+
 " Fix whitespace {{{
 highlight ExtraWhitespace ctermbg=darkred guibg=#382424
 

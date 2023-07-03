@@ -34,7 +34,7 @@
     renames = copies
 [merge]
     stat = true
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [alias]
     unstage = reset HEAD
